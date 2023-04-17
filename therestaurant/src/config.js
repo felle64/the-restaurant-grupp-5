@@ -1,6 +1,6 @@
 export const CONTRACT_ADDRESS = "0x906Bca368884b1af2848180eb4036e6dfd7057e6" 
 
-//test
+//test 12
 
 export const ABI_ADDRESS = [
     {
