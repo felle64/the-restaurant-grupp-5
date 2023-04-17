@@ -1,0 +1,20 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "dapp containing the blockchain for storing restaurant bookings",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastian Tegel",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "lite-server": "^2.6.1",
+    "truffle": "^5.7.4",
+    "truffle-contract": "^4.0.31"
+  }
+}
