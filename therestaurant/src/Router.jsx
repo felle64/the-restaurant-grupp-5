@@ -4,6 +4,7 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Menu } from "./components/Menu/Menu";
 import { Layout } from "./components/Layout/Layout";
+import { AdminView } from "./components/AdminView/AdminView";
 
 export const router = createBrowserRouter([
 	{
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/Menu", // http://localhost:3000/menu
 				element: <Menu />,
+			},
+			{
+				path: "/Admin", // http://localhost:3000/admin
+				element: <AdminView />,
 			},
 		],
 	},
