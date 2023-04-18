@@ -1,8 +1,7 @@
-export const Contract = () =>{
+export const Contact = () =>{
     return(
-        <div id="Contract">
-            <h1>Contract</h1>
-            <p>Contract</p>
+        <div id="contact">
+            <h1>Contract works</h1>
         </div>
     )
 
