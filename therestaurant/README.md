@@ -1,15 +1,8 @@
 # 🍴📈🔗 Restaurant Website with Blockchain Integration
 This is a restaurant website project developed as an assignment for a blockchain developer 2-year higher vocational education. The website allows customers to make bookings and the restaurant owner to edit bookings, all using a smart contract on the blockchain.
 
-🚀 Quickstart
-To get started with this project, follow these steps:
+# 🚀🚀🚀🚀🚀
 
-Clone this repository to your local machine
-Install the required dependencies using npm install
-Compile the smart contract using truffle compile
-Migrate the smart contract to the blockchain using truffle migrate
-Start the web server using npm start
-Open the website in your browser at http://localhost:3000
 💻 Technologies Used
 Ethereum blockchain
 Solidity smart contract language
