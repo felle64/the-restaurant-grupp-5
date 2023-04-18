@@ -1,15 +1,9 @@
 import { CreateBooking } from "../../modules/CreateBooking";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import "./Booking.css";
 
-
-
 export const Booking = () => {
-    const [booking, setBooking] = useState(new CreateBooking(null, "", "" , ""));
-
-    useEffect(() => {
-        console.log(booking);
-    }, [booking]);
+    const [booking, setBooking] = useState(new CreateBooking(0, "", "" , ""));
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -20,11 +14,12 @@ export const Booking = () => {
         event.preventDefault();
         console.log(booking);
     };
+    
 
     return (
         <div className="booking">
-            <h1>Booking</h1>
-            <form onSubmit={handleOnSubmit}>
+            <h1>Bokning</h1>
+            <form onSubmit={handleOnSubmit} className="bookingForm">
                 <label htmlFor="numberOfGuests">Antal Gäster</label>
                 <input
                     type="number"
@@ -32,6 +27,8 @@ export const Booking = () => {
                     id="numberOfGuests"
                     value={booking.numberOfGuests}
                     onChange={handleOnChange}
+                    max={6}
+                    min={1}
                 />
                 <label htmlFor="name">Namn</label>
                 <input
@@ -41,7 +38,7 @@ export const Booking = () => {
                     value={booking.name}
                     onChange={handleOnChange}
                 />
-                <label htmlFor="date">Datum</label>
+                <label htmlFor="date">Vilket Datum</label>
                 <input
                     type="date"
                     name="date"
@@ -49,15 +46,24 @@ export const Booking = () => {
                     value={booking.date}
                     onChange={handleOnChange}
                 />
-                <label htmlFor="time">Tid</label>
-                <input
-                    type="time"
-                    name="time"
-                    id="time"
-                    value={booking.time}
-                    onChange={handleOnChange}
-                />
-                <button type="submit">Boka</button>
+                <label htmlFor="time">Vilken Tid</label>
+                    <select
+                        value={booking.time} 
+                        onChange={handleOnChange}
+                        name="time"
+                        id="time"
+                    >
+                        <option 
+                            value="12.00">
+                            12:00
+                        </option>
+                        <option
+                            value="20.00">
+                            20:00
+                        </option>
+
+                    </select>
+                    <button type="submit">Boka</button>
                 </form>
         </div>
     );
