@@ -29,18 +29,13 @@ export const AdminView = () => {
         })
     }
 
- 
-
-
-return (
-    <div>
-        <h1>Welcome to AdminView</h1>
-        <button onClick={handleConnectWallet}>Connect your wallet.</button>
-
+    return (
         <div>
-        <button onClick={handleCreateRestaurant}>Create your restaurant.</button>
+            <h1>Welcome to AdminView</h1>
+            <button onClick={handleConnectWallet}>Connect your wallet.</button>
+            <div>
+                <button onClick={handleCreateRestaurant}>Create your restaurant.</button>
+            </div>
         </div>
-
-    </div>
 )
 }

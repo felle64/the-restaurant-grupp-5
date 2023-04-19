@@ -1,18 +1,23 @@
 import { Booking } from "../../modules/Booking";
 import { useState} from "react";
-import "./Booking.css";
+import "./CreateBooking.css";
+import { HandleCreateBooking } from "./HandelCreateBooking";
 
 export const CreateBooking = () => {
-    const [booking, setBooking] = useState(new Booking(0, "", "" , "", 1));
+    const [booking, setBooking] = useState(new Booking(1, "", " " , "1", 1));
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
         setBooking({ ...booking, [name]: value });
+
     };
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
         console.log(booking);
+        HandleCreateBooking(booking);
+
+        
     };
     
 
@@ -58,11 +63,11 @@ export const CreateBooking = () => {
                             Välj tid
                         </option>
                         <option 
-                            value="12.00">
+                            value={12}>
                             12:00
                         </option>
                         <option
-                            value="20.00">
+                            value={20}>
                             20:00
                         </option>
 
