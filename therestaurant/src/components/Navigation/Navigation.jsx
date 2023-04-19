@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
 
 export const Navigation = () => {
+	const location = useLocation();
+	const currentPage = location.pathname;
+
 	return (
-		<nav className='navbar'>
+		<nav className={`navbar ${currentPage === '/' ? 'navbar-transparent' : 'navbar-colored'}`}>
 			<div className="navbar-brand">THI RESTUARNT</div>
 			<ul className='navbar-links'>
 				<li className='navbar-link'>
