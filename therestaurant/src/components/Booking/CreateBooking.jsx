@@ -1,9 +1,9 @@
-import { CreateBooking } from "../../modules/CreateBooking";
+import { Booking } from "../../modules/Booking";
 import { useState} from "react";
 import "./Booking.css";
 
-export const Booking = () => {
-    const [booking, setBooking] = useState(new CreateBooking(0, "", "" , ""));
+export const CreateBooking = () => {
+    const [booking, setBooking] = useState(new Booking(0, "", "" , "", 1));
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -53,6 +53,10 @@ export const Booking = () => {
                         name="time"
                         id="time"
                     >
+                        <option 
+                            value="">
+                            Välj tid
+                        </option>
                         <option 
                             value="12.00">
                             12:00
