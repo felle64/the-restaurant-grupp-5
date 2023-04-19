@@ -1,0 +1,17 @@
+:root {
+    --primary-font: 'Poppins', sans-serif;
+    --secondary-font: 'Merriweather', serif;
+    
+    --font-size-base: 16px;
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    
+    --line-height-base: 1.5;
+    --line-height-heading: 1.2;
+    
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+  }

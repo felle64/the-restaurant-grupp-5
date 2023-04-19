@@ -1,0 +1,12 @@
+:root {
+    --border-radius-sm: 2px;
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
+    
+    --border-width-sm: 1px;
+    --border-width-md: 2px;
+    --border-width-lg: 3px;
+    
+    --border-color: #ccc;
+  }
+  
