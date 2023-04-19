@@ -4,7 +4,9 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Menu } from "./components/Menu/Menu";
 import { Layout } from "./components/Layout/Layout";
+import { CreateBooking } from "./components/Booking/CreateBooking";
 import { AdminView } from "./components/AdminView/AdminView";
+
 
 export const router = createBrowserRouter([
 	{
@@ -29,6 +31,10 @@ export const router = createBrowserRouter([
 				element: <Menu />,
 			},
 			{
+				path: "/Booking",
+				element: <CreateBooking />,
+      },
+      {
 				path: "/Admin", // http://localhost:3000/admin
 				element: <AdminView />,
 			},

@@ -18,6 +18,9 @@ export const Navigation = () => {
 				<li className='navbar-link'>
 					<Link to={"/contact"}>Kontakt</Link>
 				</li>
+				<li className='navbar-link'>
+					<Link to={"/booking"}>Bokning</Link>
+				</li>
 			</ul>
 		</nav>
 	);
