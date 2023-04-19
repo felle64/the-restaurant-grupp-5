@@ -1,8 +1,5 @@
 import Web3 from "web3"
 import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../../config";
-import { Booking } from "../../modules/Booking";
-import { useState } from "react";
-
 
 export async function HandleCreateBooking(evt) {
     console.log(evt);
@@ -29,7 +26,4 @@ export async function HandleCreateBooking(evt) {
         console.log(receipt);
     }
     );
-
-    
-    
 }

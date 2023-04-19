@@ -3,10 +3,8 @@ import { useState} from "react";
 import "./CreateBooking.css";
 import { HandleCreateBooking } from "./HandelCreateBooking";
 
-
-
 export const CreateBooking = () => {
-    const [booking, setBooking] = useState(new Booking(1, "1", "1" , "1", 1));
+    const [booking, setBooking] = useState(new Booking(1, "", " " , "1", 1));
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
