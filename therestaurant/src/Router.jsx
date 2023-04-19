@@ -5,6 +5,7 @@ import { Contact } from "./components/Contact";
 import { Menu } from "./components/Menu/Menu";
 import { Layout } from "./components/Layout/Layout";
 import { Booking } from "./components/Booking/Booking";
+import { AdminView } from "./components/AdminView/AdminView";
 
 export const router = createBrowserRouter([
 	{
@@ -30,7 +31,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "/Booking",
-				element: <Booking />,
+				element: <Booking handleCreateBooking={handleCreateBooking} />,
+			},
+			{
+				path: "/admin",
+				element: <AdminView />,
 			},
 		],
 	},

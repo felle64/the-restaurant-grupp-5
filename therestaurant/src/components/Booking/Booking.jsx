@@ -1,24 +1,35 @@
 import { CreateBooking } from "../../modules/CreateBooking";
-import { useState} from "react";
+import { useState, useEffect} from "react";
+import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../../config";
+import { account, contract} from "../AdminView/AdminView";
+import {handleCreateBooking} from "../AdminView/AdminView";
+
+
 import "./Booking.css";
 
-export const Booking = () => {
-    const [booking, setBooking] = useState(new CreateBooking(0, "", "" , ""));
+export const Booking = (props) => {
+    const [booking, setBooking] = useState(new CreateBooking(0, "", "" , "",));
+
+
+    
+
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
-        setBooking({ ...booking, [name]: value });
+        setBooking({ ...booking, [name]: value, });
+        
     };
 
-    const handleOnSubmit = (event) => {
-        event.preventDefault();
-        console.log(booking);
-    };
+async function handleOnSubmit(event, props) {
+    event.preventDefault()
+    props.handleCreateBooking(booking.numberOfGuests, booking.name, booking.date, booking.time, booking.restaurantId)
+}
+
     
 
     return (
         <div className="booking">
-            <h1>Bokning</h1>
+            <h1>Welcome to Booking</h1>
             <form onSubmit={handleOnSubmit} className="bookingForm">
                 <label htmlFor="numberOfGuests">Antal Gäster</label>
                 <input
@@ -54,16 +65,16 @@ export const Booking = () => {
                         id="time"
                     >
                         <option 
-                            value="12.00">
+                            value="12:00">
                             12:00
                         </option>
                         <option
-                            value="20.00">
+                            value="20:00">
                             20:00
                         </option>
 
                     </select>
-                    <button type="submit">Boka</button>
+                    <button onClick={props.onCreateRestaurant}>Reserve your table</button>
                 </form>
         </div>
     );
