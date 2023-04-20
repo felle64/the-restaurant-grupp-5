@@ -1,7 +1,7 @@
 import { Booking } from "../../modules/Booking";
 import { useState} from "react";
 import "./CreateBooking.css";
-import { HandleCreateBooking } from "./HandelCreateBooking";
+import { HandleCreateBooking } from "../../services/HandelCreateBooking";
 
 export const CreateBooking = () => {
     const [booking, setBooking] = useState(new Booking(1, "", " " , "1", 1));

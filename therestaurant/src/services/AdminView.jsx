@@ -1,5 +1,5 @@
 import Web3 from "web3"
-import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../../config";
+import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 import { useEffect, useState } from "react";
 
 export const AdminView = () => {
@@ -29,12 +29,24 @@ export const AdminView = () => {
         })
     }
 
+    async function handleGetBooking(e){
+        await contract.methods
+        .bookings(1)
+        .call()
+        .then((result) => {
+            console.log(result);
+        }
+        )
+    }
     return (
         <div>
             <h1>Welcome to AdminView</h1>
             <button onClick={handleConnectWallet}>Connect your wallet.</button>
             <div>
                 <button onClick={handleCreateRestaurant}>Create your restaurant.</button>
+            </div>
+            <div>
+                <button onClick={handleGetBooking}>Get your bookings.</button>
             </div>
         </div>
 )

@@ -1,5 +1,5 @@
 import Web3 from "web3"
-import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../../config";
+import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 
 export async function HandleCreateBooking(evt) {
     console.log(evt);
