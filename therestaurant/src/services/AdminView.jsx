@@ -6,6 +6,7 @@ export const AdminView = () => {
 
     const [account, setAccount] = useState("");
     const [contract, setContract] = useState(null);
+    const [booking, setBooking] = useState([]);
     const border = "1px solid black";
 
     async function handleConnectWallet () {
@@ -30,14 +31,27 @@ export const AdminView = () => {
     }
 
     async function handleGetBooking(e){
-        await contract.methods
-        .bookings(1)
-        .call()
-        .then((result) => {
-            console.log(result);
+        e.preventDefault();
+        for (let i = 1; i <= booking.id; i++){
+        const booking = await contract.methods.getBookings().call();
+        //console.log(booking);
+        setBooking(booking);
         }
-        )
+        
+        for (let i = 1; i <= booking.id; i++){
+            const booking = await contract.methods.bookings(i).call();
+            console.log(booking);
+            setBooking(booking);
+        }
     }
+
+    useEffect(() => {
+        handleConnectWallet();
+    }, []);
+
+
+    
+        
     return (
         <div>
             <h1>Welcome to AdminView</h1>
