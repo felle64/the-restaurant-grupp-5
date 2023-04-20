@@ -1,0 +1,11 @@
+:root {
+    --box-shadow-xs: 0 0 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    
+    --text-shadow-xs: 0 0 2px rgba(0, 0, 0, 0.1);
+    --text-shadow-sm: 0 0 4px rgba(0, 0, 0, 0.1);
+    --text-shadow-md: 0 0 8px rgba(0, 0, 0, 0.1);
+    --text-shadow-lg: 0 0 16px rgba(0, 0, 0, 0.2);
+    }  
