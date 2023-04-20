@@ -7,7 +7,7 @@ export const Contact = () => {
   return (
     <div className='contact-container'>
       <h1 className='contact-heading'>Kontakta oss</h1>
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form">
       <label htmlFor="name">Namn:</label>
       <input
         type="text"
