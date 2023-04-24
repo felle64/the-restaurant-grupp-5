@@ -1,6 +1,7 @@
 import Web3 from "web3"
 import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 import { useEffect, useState } from "react";
+import EditBooking from "./EditBookings";
 
 export const AdminView = () => {
 
@@ -58,6 +59,8 @@ export const AdminView = () => {
     }, []);
 
 
+    
+
   
         
     return (
@@ -77,6 +80,14 @@ export const AdminView = () => {
             <p>Date: {booking.date}</p>
             <p>Time: {booking.time}</p>
             <p>Restaurant ID: {booking.restaurantId}</p>
+            <button onClick={() => EditBooking(
+                booking.id,
+                booking.numberOfGuests,
+                booking.name,
+                booking.date,
+                booking.time
+
+            )}>Edit</button>
           </li>
         ))}
       </ul>
