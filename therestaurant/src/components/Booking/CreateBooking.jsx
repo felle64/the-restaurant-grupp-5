@@ -5,6 +5,8 @@ import { HandleCreateBooking } from "../../services/HandelCreateBooking";
 
 export const CreateBooking = () => {
     const [booking, setBooking] = useState(new Booking(1, "", " " , "1", 1));
+    const [isLoading, setIsLoading] = useState(false);
+    const [bookingDone, setBookingDone] = useState(false);
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -12,17 +14,39 @@ export const CreateBooking = () => {
 
     };
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         console.log(booking);
-        HandleCreateBooking(booking);
+        await HandleCreateBooking(booking);
+        setIsLoading(false);
+        setBookingDone(true);
 
-        
     };
+
+    if (bookingDone) {
+        return (
+            <div className="booking booking-completed">
+                <h1>Din bokning är bekräftad!</h1>
+                <div className="booking-info">
+                <p className="booking-text">Välkommen {booking.name}</p>
+                <p className="booking-text">Antal gäster: {booking.numberOfGuests}</p>
+                <p className="booking-text">datum: {booking.date}</p>
+                <p className="booking-text">Klockan: {booking.time}:00</p>
+                </div>
+            </div>
+        );
+    }
     
 
     return (
         <div className="booking">
+            {isLoading ? (
+                <div className="loading-screen">
+                    <p className="loading-screen-text">Din Bokning behandlas...</p>
+                </div>
+            ) : (
+            <>
             <h1>Bokning</h1>
             <form onSubmit={handleOnSubmit} className="bookingForm">
                 <label htmlFor="numberOfGuests">Antal Gäster</label>
@@ -74,6 +98,8 @@ export const CreateBooking = () => {
                     </select>
                     <button type="submit">Boka</button>
                 </form>
+                </>
+            )}
         </div>
     );
-}
+};

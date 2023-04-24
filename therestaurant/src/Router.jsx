@@ -6,6 +6,8 @@ import { Menu } from "./components/Menu/Menu";
 import { Layout } from "./components/Layout/Layout";
 import { CreateBooking } from "./components/Booking/CreateBooking";
 import { AdminView } from "./services/AdminView";
+import { Policy } from "./components/Gdpr/Policy";
+
 
 
 export const router = createBrowserRouter([
@@ -38,6 +40,11 @@ export const router = createBrowserRouter([
 				path: "/Admin", // http://localhost:3000/admin
 				element: <AdminView />,
 			},
+			{
+				path: "/policy", // http://localhost:3000/policy
+				element: <Policy />,
+			},
+
 		],
 	},
 ]);

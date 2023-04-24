@@ -1,6 +1,7 @@
 import "./App.css";
 import backgroundImage from "./Images/Background.png";
 import { Footer } from "./components/Footer/Footer";
+import { Gdpr } from "./components/Gdpr/Gdpr";
 
 
 function App() {
