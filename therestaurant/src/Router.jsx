@@ -5,8 +5,9 @@ import { Contact } from "./components/Contact/Contact";
 import { Menu } from "./components/Menu/Menu";
 import { Layout } from "./components/Layout/Layout";
 import { CreateBooking } from "./components/Booking/CreateBooking";
-import { AdminView } from "./components/AdminView/AdminView";
+import { AdminView } from "./services/AdminView";
 import { Policy } from "./components/Gdpr/Policy";
+
 
 
 export const router = createBrowserRouter([
