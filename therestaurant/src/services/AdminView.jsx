@@ -6,7 +6,7 @@ export const AdminView = () => {
 
     const [account, setAccount] = useState("");
     const [contract, setContract] = useState(null);
-    const [booking, setBooking] = useState([]);
+    const [bookings, setBookings] = useState([]);
     const border = "1px solid black";
 
     async function handleConnectWallet () {
@@ -30,27 +30,35 @@ export const AdminView = () => {
         })
     }
 
-    async function handleGetBooking(e){
-        e.preventDefault();
-        for (let i = 1; i <= booking.id; i++){
-        const booking = await contract.methods.getBookings().call();
-        //console.log(booking);
-        setBooking(booking);
-        }
-        
-        for (let i = 1; i <= booking.id; i++){
-            const booking = await contract.methods.bookings(i).call();
-            console.log(booking);
-            setBooking(booking);
-        }
-    }
+
+    async function fetchBookings() {
+
+            const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
+      
+
+            const restaurantId = 1; 
+            const bookingIds = await contract.methods.getBookings(restaurantId).call();
+      
+
+            const bookingsArray = [];
+            for (let i = 0; i < bookingIds.length; i++) {
+              const bookingId = bookingIds[i];
+              const booking = await contract.methods.bookings(bookingId).call();
+              bookingsArray.push(booking);
+            }
+      
+
+            setBookings(bookingsArray);
+          };
 
     useEffect(() => {
         handleConnectWallet();
+        fetchBookings();
+        
     }, []);
 
 
-    
+  
         
     return (
         <div>
@@ -60,7 +68,18 @@ export const AdminView = () => {
                 <button onClick={handleCreateRestaurant}>Create your restaurant.</button>
             </div>
             <div>
-                <button onClick={handleGetBooking}>Get your bookings.</button>
+            <ul>
+        {bookings.map((booking, index) => (
+          <li key={index}>
+            <p>Booking ID: {booking.id}</p>
+            <p>Number of Guests: {booking.numberOfGuests}</p>
+            <p>Name: {booking.name}</p>
+            <p>Date: {booking.date}</p>
+            <p>Time: {booking.time}</p>
+            <p>Restaurant ID: {booking.restaurantId}</p>
+          </li>
+        ))}
+      </ul>
             </div>
         </div>
 )
