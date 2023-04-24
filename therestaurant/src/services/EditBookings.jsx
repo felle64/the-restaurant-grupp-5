@@ -21,21 +21,21 @@ const EditBooking = async ( bookingId, numberOfGuests, name, date, time) => {
     }
   
     try {
-      // Convert bookingId and numberOfGuests to numbers
       const bookingIdNum = parseInt(bookingId, 10);
       const numberOfGuestsNum = parseInt(numberOfGuests, 10);
   
-      // Call the contract's editBooking function with the updated booking details
+
       await contract.methods
         .editBooking(bookingIdNum, numberOfGuestsNum, name, date, time)
         .send({ from: account });
   
-      // Handle transaction confirmation and receipt, and update state or UI accordingly
+
       console.log("Booking edited successfully");
     } catch (error) {
       console.error("Error editing booking:", error);
     }
   };
+
 
 export default EditBooking;
   
