@@ -4,7 +4,8 @@
 @import "./Styles/Shadow.css";
 @import "./Styles/Spacing.css";
 @import "./Styles/Transition.css";
-@import "./Styles/Breakpoint.css";
+@import "./Styles/Animations.css";
+
 @import "normalize.css";
 
 
@@ -12,5 +13,6 @@
 * {
   box-sizing: border-box;
     font-family: var(--primary-font);
+    animation: var(--fade-standard);
 }
 

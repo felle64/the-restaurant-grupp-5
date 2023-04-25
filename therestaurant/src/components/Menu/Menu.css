@@ -6,18 +6,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
   }
   
-  .menu-buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  
+
   .menu-button {
+    height: 100px;
+    width: 250px;
     margin: var(--spacing-sm);
-    padding: var(--spacing-xl);
+    /* padding: var(--spacing-xl); */
     background-color: var(--accent-color);
     border: none;
     color: var(--text-color);
@@ -36,6 +34,7 @@
   
   .menu-button.active {
     background-color: var(--accent-color-2);
+
   }
 
   .menu {

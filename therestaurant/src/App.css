@@ -8,11 +8,12 @@
     position: absolute;
     z-index: -1;
     top:0;
-    opacity: 0.7;
+    opacity: 0.9;
+
 }
 
 .heropage-wrapper{
-    height: 60vh;
+    height: 85vh;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -22,7 +23,9 @@
 
 .heropage-content{
     min-width: 20%;
-    max-width: 50%;
+    max-width: 40%;
+    min-height: 60%;
+    max-height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +34,8 @@
     padding: var(--spacing-xl);
     border-radius: var(--border-radius-lg);
     color: var(--text-color);
-    background-color: rgba(88, 69, 69, 0.2);
+    background-color: rgba(88, 69, 69, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .heropage-title{
@@ -50,15 +54,96 @@
     font-weight: var(--font-weight-bold);
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
-    background-color: rgba(var(--accent-color-rgb), 0.5);
     transition: var(--transition-standard);
     cursor: pointer;
+    outline: none;
+    border: 1px solid var(--text-color);
+    background-color: transparent;
 }
 
 .heropage-button:hover{
-    background-color: rgba(var(--accent-color-rgb), 0.8);
-    scale : 1.1;
+    background-color: var(--accent-color-2);
+    color : var(--primary-color);
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 40px;
+    gap: 1rem;
+    background-color: var(--accent-color-2);
+  }
+  
+ .grid-content {
+    position: relative;
+    background-color: var(--background-color);
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: var(--border-width-lg) solid var(--text-color);
+ }
+
+ .grid-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+ }
+
+ .grid-title {
+    font-size: 3rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    margin : 0;
+    padding: 0;
+ }
+
+ .grid-text {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-color);
+    max-width: 60%;
+    margin : 0;
+    padding: 0;
+    
+ }
+
+ .grid-button {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-regular);
+    padding: var(--spacing-md) var(--spacing-xxl);
+    transition: var(--transition-standard);
+    cursor: pointer;
+    outline: none;
+    border: var(--border-width-md) solid var(--text-color);
+    background-color: var(--background-color);
+ }
+
+    .grid-button:hover {
+        background-color: var(--accent-color-2);
+        color: var(--background-color);
+    }
+  
 
 
+
+@keyframes fadeIn {
+    from {
+      opacity:0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }

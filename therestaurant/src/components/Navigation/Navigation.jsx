@@ -13,9 +13,6 @@ export const Navigation = () => {
 					<Link to={"/"}>Hem</Link>
 				</li>
 				<li className='navbar-link'>
-					<Link to={"/about"}>Om oss</Link>
-				</li>
-				<li className='navbar-link'>
 					<Link to={"/menu"}>Meny</Link>
 				</li>
 				<li className='navbar-link'>
