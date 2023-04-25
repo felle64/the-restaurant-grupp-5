@@ -8,6 +8,12 @@ export const AdminView = () => {
     const [account, setAccount] = useState("");
     const [contract, setContract] = useState(null);
     const [bookings, setBookings] = useState([]);
+
+    const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
+    const [newName, setNewName] = useState("")
+    const [newDate, setNewDate] = useState("1")
+    const [newTime, setNewTime] = useState(1)
+
     const border = "1px solid black";
 
     async function handleConnectWallet () {
@@ -58,7 +64,20 @@ export const AdminView = () => {
         
     }, []);
 
+  async function handleEdit (e) {
+    e.preventDefault();
 
+   const booking = bookings[0]
+
+    console.log(booking.id);
+    EditBooking(
+        booking.id,
+        newNumberOfGuest,
+        newName,
+        newDate,
+        newTime
+    )
+  }
     
 
   
@@ -80,14 +99,33 @@ export const AdminView = () => {
             <p>Date: {booking.date}</p>
             <p>Time: {booking.time}</p>
             <p>Restaurant ID: {booking.restaurantId}</p>
-            <button onClick={() => EditBooking(
-                booking.id,
-                booking.numberOfGuests,
-                booking.name,
-                booking.date,
-                booking.time
 
-            )}>Edit</button>
+            
+
+            <input type="number" placeholder="Number of guests" onChange={(e) => setNewNumberOfGuest(e.target.value)} />
+            <input type="text" placeholder="Name" onChange={(e) => setNewName(e.target.value)} />
+            <input type="date" placeholder="Date" onChange={(e) => setNewDate(e.target.value)} />
+            <label htmlFor="time">Vilken Tid</label>
+                    <select
+                        onChange={(e) => setNewTime(e.target.value)}
+                        name="time"
+                        id="time"
+                    >
+                        <option 
+                            value="">
+                            Välj tid
+                        </option>
+                        <option 
+                            value={12}>
+                            12:00
+                        </option>
+                        <option
+                            value={20}>
+                            20:00
+                        </option>
+
+                    </select>
+            <button onClick={handleEdit}>Edit</button>
           </li>
         ))}
       </ul>
