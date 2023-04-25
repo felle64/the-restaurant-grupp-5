@@ -10,13 +10,14 @@ export const AdminView = () => {
     const [contract, setContract] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
-
+    const [sortTime, setSortTime] = useState("all");
+    const [sortDirection, setSortDirection] = useState("ascending");
+    const [filterDate, setFilterDate] = useState("s");
     const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
     const [newName, setNewName] = useState("")
     const [newDate, setNewDate] = useState("1")
     const [newTime, setNewTime] = useState(1)
 
-    const border = "1px solid black";
 
     async function handleConnectWallet () {
         if (window.ethereum) {
@@ -38,21 +39,23 @@ export const AdminView = () => {
             console.log(receipt);
         })
     }
-
-
+    const bookingsArray = [];
     async function fetchBookings() {
             const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
             const restaurantId = 1; 
             const bookingIds = await contract.methods.getBookings(restaurantId).call();
-            const bookingsArray = [];
             for (let i = 0; i < bookingIds.length; i++) {
               const bookingId = bookingIds[i];
               const booking = await contract.methods.bookings(bookingId).call();
-              bookingsArray.push(booking);         
-            }
+              bookingsArray.push(booking);  
             setBookingIds(bookingIds)
             setBookings(bookingsArray);
-          };
+          }
+      };
+
+
+   
+
 
     useEffect(() => {
         handleConnectWallet();
@@ -75,37 +78,26 @@ export const AdminView = () => {
       );
     }
 
+    const filteredBookings = bookings.filter((booking) => {
+      if (filterDate === '') {
+        return true;
+      }
+      return booking.date === filterDate;
+    });
+
 
     return (
       <div className="admin-view">
-        <h1 className="admin-view__heading">Welcome to AdminView</h1>
-        <div className="admin-view__filter">
-          <div className="admin-view__filter-group">
-            <label htmlFor="time-filter" className="admin-view__filter-label">Sort by:</label>
-            <select
-              // onChange={(e) => setSortTime(e.target.value)}
-              name="time"
-              id="time-filter"
-              className="admin-view__filter-select"
-            >
-              <option value="all">All times</option>
-              <option value="12">Lunch</option>
-              <option value="20">Dinner</option>
-            </select>
-          </div>
-          <div className="admin-view__filter-group">
-            <label htmlFor="date-filter" className="admin-view__filter-label">Filter by date:</label>
-            <input
-              type="date"
-              name="date"
-              id="date-filter"
-              className="admin-view__filter-input"
-              //onChange={(e) => setFilterDate(e.target.value)}
-            />
-          </div>
-        </div>
+        <h1>Admin View</h1>
+        <input
+          type="date"
+          name="date"
+          id="date-filter"
+          className="admin-view__filter-input"
+          onChange={(e) => setFilterDate(e.target.value)}
+        />
         <div className="admin-view__bookings">
-          {bookings.map((booking, index) => (
+          {filteredBookings.map((booking, index) => (
             <div key={index} className="admin-view__booking">
               <div className="admin-view__booking-details">
                 <p className="admin-view__booking-id">Booking ID: {booking.id}</p>
