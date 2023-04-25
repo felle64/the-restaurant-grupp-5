@@ -10,13 +10,13 @@ export const AdminView = () => {
     const [contract, setContract] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
-    const [sortTime, setSortTime] = useState("all");
-    const [sortDirection, setSortDirection] = useState("ascending");
     const [filterDate, setFilterDate] = useState("s");
+    const [filterTime, setFilterTime] = useState('');
     const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
     const [newName, setNewName] = useState("")
     const [newDate, setNewDate] = useState("1")
     const [newTime, setNewTime] = useState(1)
+    
 
 
     async function handleConnectWallet () {
@@ -78,13 +78,23 @@ export const AdminView = () => {
       );
     }
 
-    const filteredBookings = bookings.filter((booking) => {
-      if (filterDate === '') {
-        return true;
+    function filterBookings(bookings, filterDate, filterTime) {
+      if (!filterDate && !filterTime) {
+        return bookings;
       }
-      return booking.date === filterDate;
-    });
+    
+      return bookings.filter((booking) => {
+        if (filterDate && filterDate !== booking.date) {
+          return false;
+        }
+        if (filterTime && filterTime !== booking.time) {
+          return false;
+        }
+        return true;
+      });
+    }
 
+    const bookingsToShow = filterBookings(bookings, filterDate, filterTime);
 
     return (
       <div className="admin-view">
@@ -96,8 +106,16 @@ export const AdminView = () => {
           className="admin-view__filter-input"
           onChange={(e) => setFilterDate(e.target.value)}
         />
+
+        <label htmlFor="time-filter">Filter by time:</label>
+        <select name="time-filter" id="time-filter" onChange={(e) => setFilterTime(e.target.value)}>
+          <option value="">All times</option>
+          <option value="12">12:00</option>
+          <option value="20">20:00</option>
+        </select>
+
         <div className="admin-view__bookings">
-          {filteredBookings.map((booking, index) => (
+          {bookingsToShow.map((booking, index) => (
             <div key={index} className="admin-view__booking">
               <div className="admin-view__booking-details">
                 <p className="admin-view__booking-id">Booking ID: {booking.id}</p>
