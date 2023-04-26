@@ -2,13 +2,12 @@
 
 export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, handlePreviousStep, lastName }) => {
 
-    const handleCheckValue = () => {
-        console.log(booking);
-    }
+  
     
 
     return (
         <>
+         <form className="bookingForm">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
@@ -25,12 +24,14 @@ export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, ha
             id="lastName"
             value={lastName}
             onChange={handleOnChange}
-            required={true}
+            required
           />
           <button onClick={handlePreviousStep}>Previous</button>
           <button onClick={handleNextStep}>Next</button>
-          <button onClick={handleCheckValue}>Check</button>
+
+          </form>
           </>
+
       );
       
 }
