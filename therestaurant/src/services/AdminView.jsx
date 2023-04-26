@@ -2,6 +2,7 @@ import Web3 from "web3"
 import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 import { useEffect, useState } from "react";
 import EditBooking from "./EditBookings";
+import RemoveBookings from "./RemoveBookings";
 import './AdminView.css';
 
 export const AdminView = () => {
@@ -68,6 +69,8 @@ export const AdminView = () => {
     }, []);
     
 
+
+
     async function handleEdit(bookingId) {
       console.log(bookingId);
       await EditBooking(
@@ -77,6 +80,11 @@ export const AdminView = () => {
         newDate,
         newTime
       );
+    }
+
+    async function handleRemove(bookingId) {
+      console.log(bookingId);
+      await RemoveBookings(bookingId);
     }
     
     function filterBookings(bookings, filterDate, filterTime) {
@@ -150,6 +158,11 @@ export const AdminView = () => {
                   Edit
                 </button>
               </div>
+              <div className="admin-view__booking-remove">
+                <button onClick={() => handleRemove(booking.id)}
+                value={booking.id}
+                className="admin-view__remove-button">Remove</button>
+                </div>
             </div>
           ))}
         </div>
