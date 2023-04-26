@@ -9,6 +9,7 @@ export const AdminView = () => {
 
     const [account, setAccount] = useState("");
     const [contract, setContract] = useState(null);
+    const [restaurantExists, setRestaurantExists] = useState(false);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
     const [filterDate, setFilterDate] = useState(""); //låg ett "s" i useState?
@@ -18,8 +19,6 @@ export const AdminView = () => {
     const [newDate, setNewDate] = useState("1")
     const [newTime, setNewTime] = useState(1)
     
-
-
     async function handleConnectWallet () {
         if (window.ethereum) {
           window.web3 = new Web3(window.ethereum);
@@ -32,7 +31,7 @@ export const AdminView = () => {
       }
 
     async function handleCreateRestaurant() {
-        const name = "My restaurant";
+        const name = "East Harmony";
         await contract.methods.
         createRestaurant(name)
         .send({from: account})
@@ -40,6 +39,22 @@ export const AdminView = () => {
             console.log(receipt);
         })
     }
+
+    /* async function checkRestaurantExists() {
+      const restaurantName = "East Harmony";
+      const restaurantCount = await contract.methods.restaurantCount().call();
+      console.log(restaurantCount);
+      
+      for (let i = 1; i <= restaurantCount; i++) {
+        const restaurant = await contract.methods.restaurants(i).call();
+        console.log(restaurant);
+        if (restaurant.name === restaurantName) {
+          setRestaurantExists(true);
+          break;
+        }
+      }
+    } */
+    
 
     async function fetchBookings() {
       const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
@@ -56,21 +71,13 @@ export const AdminView = () => {
       }
       setBookings([...bookings, ...bookingsArray]);
     };
-    
-
-
-
-   
-
 
     useEffect(() => {
       handleConnectWallet();
       fetchBookings();
+      /* checkRestaurantExists(); */
     }, []);
     
-
-
-
     async function handleEdit(bookingId) {
       console.log(bookingId);
       await EditBooking(
@@ -80,11 +87,13 @@ export const AdminView = () => {
         newDate,
         newTime
       );
+      
     }
 
     async function handleRemove(bookingId) {
       console.log(bookingId);
       await RemoveBookings(bookingId);
+      
     }
     
     function filterBookings(bookings, filterDate, filterTime) {
@@ -105,11 +114,12 @@ export const AdminView = () => {
     console.log(bookingsToShow);
     
     return (
-
-    
-  
       <div className="admin-view">
         <h1>Admin View</h1>
+       {/*  {!restaurantExists && <button onClick={handleCreateRestaurant}>Create Restaurant</button>} */}
+
+
+
         <input
           type="date"
           name="date"
