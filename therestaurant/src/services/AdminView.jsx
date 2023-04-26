@@ -2,6 +2,7 @@ import Web3 from "web3"
 import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 import { useEffect, useState } from "react";
 import EditBooking from "./EditBookings";
+import './AdminView.css';
 
 export const AdminView = () => {
 
@@ -9,13 +10,14 @@ export const AdminView = () => {
     const [contract, setContract] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
-
+    const [filterDate, setFilterDate] = useState("s");
+    const [filterTime, setFilterTime] = useState('');
     const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
     const [newName, setNewName] = useState("")
     const [newDate, setNewDate] = useState("1")
     const [newTime, setNewTime] = useState(1)
+    
 
-    const border = "1px solid black";
 
     async function handleConnectWallet () {
         if (window.ethereum) {
@@ -37,29 +39,23 @@ export const AdminView = () => {
             console.log(receipt);
         })
     }
-
-
+    const bookingsArray = [];
     async function fetchBookings() {
-
             const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
-      
-
             const restaurantId = 1; 
             const bookingIds = await contract.methods.getBookings(restaurantId).call();
-      
-
-            const bookingsArray = [];
             for (let i = 0; i < bookingIds.length; i++) {
               const bookingId = bookingIds[i];
-              //console.log(bookingId);
               const booking = await contract.methods.bookings(bookingId).call();
-              //console.log(booking);
-              bookingsArray.push(booking);
-              
-            }
+              bookingsArray.push(booking);  
             setBookingIds(bookingIds)
             setBookings(bookingsArray);
-          };
+          }
+      };
+
+
+   
+
 
     useEffect(() => {
         handleConnectWallet();
@@ -81,64 +77,79 @@ export const AdminView = () => {
         newTime
       );
     }
-    
-    
 
-  
-        
+    function filterBookings(bookings, filterDate, filterTime) {
+      if (!filterDate && !filterTime) {
+        return bookings;
+      }
+    
+      return bookings.filter((booking) => {
+        if (filterDate && filterDate !== booking.date) {
+          return false;
+        }
+        if (filterTime && filterTime !== booking.time) {
+          return false;
+        }
+        return true;
+      });
+    }
+
+    const bookingsToShow = filterBookings(bookings, filterDate, filterTime);
+
     return (
-        <div>
-            <h1>Welcome to AdminView</h1>
-            <button onClick={handleConnectWallet}>Connect your wallet.</button>
-            <div>
-                <button onClick={handleCreateRestaurant}>Create your restaurant.</button>
+      <div className="admin-view">
+        <h1>Admin View</h1>
+        <input
+          type="date"
+          name="date"
+          id="date-filter"
+          className="admin-view__filter-input"
+          onChange={(e) => setFilterDate(e.target.value)}
+        />
+
+        <label htmlFor="time-filter">Filter by time:</label>
+        <select name="time-filter" id="time-filter" onChange={(e) => setFilterTime(e.target.value)}>
+          <option value="">All times</option>
+          <option value="12">12:00</option>
+          <option value="20">20:00</option>
+        </select>
+
+        <div className="admin-view__bookings">
+          {bookingsToShow.map((booking, index) => (
+            <div key={index} className="admin-view__booking">
+              <div className="admin-view__booking-details">
+                <p className="admin-view__booking-id">Booking ID: {booking.id}</p>
+                <p className="admin-view__booking-guests">Number of Guests: {booking.numberOfGuests}</p>
+                <p className="admin-view__booking-name">Name: {booking.name}</p>
+                <p className="admin-view__booking-date">Date: {booking.date}</p>
+                <p className="admin-view__booking-time">Time: {booking.time}:00</p>
+                <p className="admin-view__booking-restaurant-id">Restaurant ID: {booking.restaurantId}</p>
+              </div>
+              <div className="admin-view__booking-edit">
+                <input type="number" placeholder="Number of guests" className="admin-view__edit-input" onChange={(e) => setNewNumberOfGuest(e.target.value)} />
+                <input type="text" placeholder="Name" className="admin-view__edit-input" onChange={(e) => setNewName(e.target.value)} />
+                <input type="date" placeholder="Date" className="admin-view__edit-input" onChange={(e) => setNewDate(e.target.value)} />
+                <select
+                  onChange={(e) => setNewTime(e.target.value)}
+                  name="time"
+                  id="time"
+                  className="admin-view__edit-select"
+                >
+                  <option value="">Choose time</option>
+                  <option value="12">12:00</option>
+                  <option value="20">20:00</option>
+                </select>
+                <button
+                  onClick={(e) => handleEdit(e, booking.id)}
+                  value={booking.id}
+                  className="admin-view__edit-button"
+                >
+                  Edit
+                </button>
+              </div>
             </div>
-            <div>
-            <ul>
-        {bookings.map((booking, index) => (
-          <li key={index} >
-            <p>Booking ID: {booking.id} </p>
-            <p>Number of Guests: {booking.numberOfGuests}</p>
-            <p>Name: {booking.name}</p>
-            <p>Date: {booking.date}</p>
-            <p>Time: {booking.time}</p>
-            <p>Restaurant ID: {booking.restaurantId}</p>
-
-            
-
-            <input type="number" placeholder="Number of guests" onChange={(e) => setNewNumberOfGuest(e.target.value)} />
-            <input type="text" placeholder="Name" onChange={(e) => setNewName(e.target.value)} />
-            <input type="date" placeholder="Date" onChange={(e) => setNewDate(e.target.value)} />
-                    <select
-                        onChange={(e) => setNewTime(e.target.value)}
-                        name="time"
-                        id="time"
-                    >
-                        <option 
-                            value="">
-                            Välj tid
-                        </option>
-                        <option 
-                            value={12}>
-                            12:00
-                        </option>
-                        <option
-                            value={20}>
-                            20:00
-                        </option>
-
-                    </select>
-                    <button 
-                      onClick={(e) => handleEdit(e, booking.id)} 
-                      value={booking.id}
-                    >
-                    Edit
-                    </button>
-
-          </li>
-        ))}
-      </ul>
-            </div>
+          ))}
         </div>
-)
-}
+      </div>
+    );
+  }
