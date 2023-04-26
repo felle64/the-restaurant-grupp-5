@@ -2,6 +2,7 @@ import Web3 from "web3"
 import { CONTRACT_ADDRESS, ABI_ADDRESS } from "../config";
 import { useEffect, useState } from "react";
 import EditBooking from "./EditBookings";
+import RemoveBookings from "./RemoveBookings";
 import './AdminView.css';
 
 export const AdminView = () => {
@@ -10,7 +11,7 @@ export const AdminView = () => {
     const [contract, setContract] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
-    const [filterDate, setFilterDate] = useState("s");
+    const [filterDate, setFilterDate] = useState(""); //låg ett "s" i useState?
     const [filterTime, setFilterTime] = useState('');
     const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
     const [newName, setNewName] = useState("")
@@ -39,37 +40,40 @@ export const AdminView = () => {
             console.log(receipt);
         })
     }
-    const bookingsArray = [];
+
     async function fetchBookings() {
-            const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
-            const restaurantId = 1; 
-            const bookingIds = await contract.methods.getBookings(restaurantId).call();
-            for (let i = 0; i < bookingIds.length; i++) {
-              const bookingId = bookingIds[i];
-              const booking = await contract.methods.bookings(bookingId).call();
-              bookingsArray.push(booking);  
-            setBookingIds(bookingIds)
-            setBookings(bookingsArray);
-          }
-      };
+      const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
+      const restaurantId = 1; 
+      const bookingIds = await contract.methods.getBookings(restaurantId).call();
+      const bookingsArray = []; // Move this line here
+      for (let i = 0; i < bookingIds.length; i++) {
+        const bookingId = bookingIds[i];
+        const booking = await contract.methods.bookings(bookingId).call();
+        bookingsArray.push(booking);  
+        setBookingIds(bookingIds);
+        setBookings(bookingsArray);
+        console.log(bookingsArray);
+      }
+      setBookings([...bookings, ...bookingsArray]);
+    };
+    
+
 
 
    
 
 
     useEffect(() => {
-        handleConnectWallet();
-        fetchBookings();
-        
+      handleConnectWallet();
+      fetchBookings();
     }, []);
-
-    async function handleEdit (e) {
-      e.preventDefault();
-      const bookingId = e.target.value;
-      //const bookingId = bookingIds[index];
     
+
+
+
+    async function handleEdit(bookingId) {
       console.log(bookingId);
-      EditBooking(
+      await EditBooking(
         bookingId,
         newNumberOfGuest,
         newName,
@@ -78,25 +82,32 @@ export const AdminView = () => {
       );
     }
 
+    async function handleRemove(bookingId) {
+      console.log(bookingId);
+      await RemoveBookings(bookingId);
+    }
+    
     function filterBookings(bookings, filterDate, filterTime) {
       if (!filterDate && !filterTime) {
+        console.log(bookings);
         return bookings;
       }
     
       return bookings.filter((booking) => {
-        if (filterDate && filterDate !== booking.date) {
-          return false;
-        }
-        if (filterTime && filterTime !== booking.time) {
+        if ((filterDate && filterDate !== booking.date) || (filterTime && filterTime !== booking.time)) {
           return false;
         }
         return true;
       });
     }
-
+    
     const bookingsToShow = filterBookings(bookings, filterDate, filterTime);
-
+    console.log(bookingsToShow);
+    
     return (
+
+    
+  
       <div className="admin-view">
         <h1>Admin View</h1>
         <input
@@ -140,13 +151,18 @@ export const AdminView = () => {
                   <option value="20">20:00</option>
                 </select>
                 <button
-                  onClick={(e) => handleEdit(e, booking.id)}
+                  onClick={() => handleEdit(booking.id)}
                   value={booking.id}
                   className="admin-view__edit-button"
                 >
                   Edit
                 </button>
               </div>
+              <div className="admin-view__booking-remove">
+                <button onClick={() => handleRemove(booking.id)}
+                value={booking.id}
+                className="admin-view__remove-button">Remove</button>
+                </div>
             </div>
           ))}
         </div>
