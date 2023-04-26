@@ -61,7 +61,7 @@ function App() {
 				</div>
 			</div>
 
-			{/* <Footer /> */}
+			<Footer />
 			<img
 				src={backgroundImage}
 				alt='Background'

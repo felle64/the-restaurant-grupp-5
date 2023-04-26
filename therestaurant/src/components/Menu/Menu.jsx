@@ -4,7 +4,7 @@ import { DinnerMenu } from "./DinnerMenu";
 import "./Menu.css";
 
 export const Menu = () => {
-	const [showLunchMenu, setShowLunchMenu] = useState(false);
+	const [showLunchMenu, setShowLunchMenu] = useState(true);
 	const [showDinnerMenu, setShowDinnerMenu] = useState(false);
 
 	const showMenu = (menu) => {
@@ -20,7 +20,6 @@ export const Menu = () => {
 	return (
 		<>
 			<div className='menu-container'>
-				<h1>Meny</h1>
 				<div className='menu-buttons'>
 					<button
 						className={`menu-button ${showLunchMenu ? "active" : ""}`}
@@ -28,7 +27,7 @@ export const Menu = () => {
 						Lunchmeny
 					</button>
 					<button
-						className={`menu-button ${!showDinnerMenu ? "active" : ""}`}
+						className={`menu-button ${!showDinnerMenu ? "" : "active"}`}
 						onClick={() => showMenu("dinner")}>
 						Middagsmeny
 					</button>
