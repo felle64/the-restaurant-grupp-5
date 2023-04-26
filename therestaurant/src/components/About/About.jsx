@@ -3,6 +3,7 @@ import "./About.css"
 export const About = () => {
 	return (
 		<div className='about-container'>
+			<div className="about-wrapper">
 			<h1 className='about-title'>Välkommen till East Harmony,</h1>
 			<p className='about-text'>
 				en unik Asian Fusion-restaurang som öppnade sina dörrar 2021. Här möts
@@ -28,8 +29,9 @@ export const About = () => {
 				Vi hoppas att du blir lika förtjust i vår Asian Fusion-mat som vi är och
 				att East Harmony blir en plats där du kan dela oförglömliga stunder med
 				familj och vänner. Välkommen att utforska vår meny och låt oss ta dig
-				med på en kulinarisk resa genom Asiens mångfacetterade smaker!
+				med på en kulinarisk resa genom Asien.
 			</p>
+			</div>
 		</div>
 	);
 };

@@ -1,53 +1,68 @@
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(var(--accent-color-rgb), 0.1);
-    color: var(--text-color);
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  .footer-content-left,
-  .footer-content-right {
-    flex-basis: 45%;
-  }
-  
-  .footer-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .footer-content p {
-    line-height: 1;
-    font-weight: var(--font-weight-bold);
-  }
-  
-  .footer-content span {
-    font-weight: bold;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    font-weight: var(--font-weight-bold);
-  }
-  
-  @media (max-width: 768px) {
-    .footer-content {
-      flex-direction: column;
-    }
-  
-    .footer-content-left,
-    .footer-content-right {
-      flex-basis: 100%;
-      margin-bottom: 1rem;
-    }
-  }
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: var(--spacing-sm);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 3px var(--accent-color);
+}
+
+.footer-content h3 {
+  font-size: var(--font-size-h3);
+}
+
+
+.footer-content span {
+  font-weight: bold;
+}
+
+.footer-content a {
+  color : var(--text-color);
+  font-size: var(--font-size-base);
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  transition: var(--standard-transition);
+  cursor: pointer;
+}
+
+.footer-content a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.footer-link {
+display: block;
+}
+
+.footer-bottom {
+  font-weight: var(--font-weight-bold);
+  text-shadow: 1px 1px 3px var(--accent-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: var(--spacing-sm);
+}
+
+.scroll-btn {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--font-size-h3);
+  cursor: pointer;
+  transition: var(--standard-transition);
+  padding: var(--spacing-sm);
+  outline: none;
+  border: none;
+  border-radius: var(--border-radius-md);
+}
+
+.scroll-btn:hover {
+  background-color: var(--accent-color-2);
+  color: var(--background-color);
+
+}

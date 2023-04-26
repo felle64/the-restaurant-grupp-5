@@ -1,14 +1,18 @@
 import React from "react";
-import { menuItems, MenuCategory, dinnerItems } from "./MenuData"; 
+import { menuItems, MenuCategory, dinnerItems } from "./MenuData";
 
 export const DinnerMenu = () => {
-  return (
-    <div>
-    <div className="menu">
-      {dinnerItems.map((category) => (
-        <MenuCategory key={category.category} category={category} />
-      ))}
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<h1>Middagsmeny</h1>
+			<div className='menu'>
+				{dinnerItems.map((category) => (
+					<MenuCategory
+						key={category.category}
+						category={category}
+					/>
+				))}
+			</div>
+		</div>
+	);
 };

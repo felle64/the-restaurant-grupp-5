@@ -4,7 +4,8 @@
 @import "./Styles/Shadow.css";
 @import "./Styles/Spacing.css";
 @import "./Styles/Transition.css";
-@import "./Styles/Breakpoint.css";
+@import "./Styles/Animations.css";
+
 @import "normalize.css";
 
 
@@ -12,5 +13,26 @@
 * {
   box-sizing: border-box;
     font-family: var(--primary-font);
+    animation: var(--fade-standard);
 }
 
+.back-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: var(--spacing-md);
+  background-color: var(--background-color);
+  border: none;
+  color: var(--text-color);
+  font-size: var(--font-size-h4);
+  cursor: pointer;
+  transition: var(--transition-standard);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+}
+
+.back-button:hover {
+  background-color: var(--accent-color-2);
+  color: var(--background-color);
+  box-shadow: var(--shadow-md);
+}
