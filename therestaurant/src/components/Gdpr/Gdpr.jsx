@@ -6,7 +6,7 @@ export const Gdpr = () => {
 	const [timer, setTimer] = useState(false);
 
 	useEffect(() => {
-		const Accepted = localStorage.getItem("gdprAnswer:");
+		const Accepted = localStorage.getItem("gdprAnswer");
 		if (!Accepted) {
 			setShowing(true);
 

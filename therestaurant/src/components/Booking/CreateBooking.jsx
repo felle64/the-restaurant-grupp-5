@@ -1,164 +1,204 @@
 import { Booking } from "../../modules/Booking";
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import "./CreateBooking.css";
 import { HandleCreateBooking } from "../../services/HandelCreateBooking";
-import {CreateBookingStep1} from "./CreateBookingStep1";
+import { CreateBookingStep1 } from "./CreateBookingStep1";
 import { CreateBookingStep2 } from "./CreateBookingStep2";
 import { CreateBookingStep3 } from "./CreateBookingStep3";
 import { CreateBookingStep4 } from "./CreateBookingStep4";
 
 export const CreateBooking = () => {
-    const [currentStep, setCurrentStep] = useState(1);
-    const [booking, setBooking] = useState(new Booking(1, "", " " , "1", 1));
-    const [isLoading, setIsLoading] = useState(false);
-    const [bookingDone, setBookingDone] = useState(false);
+	const [currentStep, setCurrentStep] = useState(1);
+	const [booking, setBooking] = useState(new Booking(1, "", " ", "1", 1));
+	const [isLoading, setIsLoading] = useState(false);
+	const [bookingDone, setBookingDone] = useState(false);
+	const [bookings, setBookings] = useState({});
 
+	const maxPerTable = 6;
 
-    const handleOnChange = (event) => {
-        const { name, value } = event.target;
-        setBooking((prevBooking) => {
-          if (name === "firstName") {
-            return { ...prevBooking, name: `${value} ${prevBooking.lastName}`, firstName: value };
-          }
-          if (name === "lastName") {
-            return { ...prevBooking, name: `${prevBooking.firstName} ${value}`, lastName: value };
-          }
-          return { ...prevBooking, [name]: value };
-        });
-      };
+	function personsPerTable(guests) {
+		let tables = 0;
+		let remainingGuests = guests;
 
-    const handleOnSubmit = async (event) => {
-        event.preventDefault();
-        setIsLoading(true);
-        console.log(booking);
-        await HandleCreateBooking(booking);
-        setIsLoading(false);
-        setBookingDone(true);
+		while (remainingGuests > 0) {
+			tables++;
+			remainingGuests -= maxPerTable;
+		}
 
-    };
+		console.log("Per bord:", guests, "gäster", tables);
+		return tables;
+	}
 
-    const handleNextStep = () => { setCurrentStep(currentStep + 1); };
-    const handlePreviousStep = () => { setCurrentStep(currentStep - 1); };
+	useEffect(() => {
+		const storedBookings = localStorage.getItem("bookings");
+		if (storedBookings) {
+			setBookings(JSON.parse(storedBookings));
+		}
+	}, []);
 
-    const renderStep = () => {
-        switch (currentStep) {
-            case 1:
-                return <CreateBookingStep1 
-                        booking={booking} 
-                        handleOnChange={handleOnChange} 
-                        handleNextStep={handleNextStep}/>;
-                case 2:
-                    return <CreateBookingStep2 
-                    booking={booking} 
-                    handleOnChange={handleOnChange} 
-                    handleNextStep={handleNextStep} 
-                    handlePreviousStep={handlePreviousStep} 
-                    />;    
-                case 3:
-                    return <CreateBookingStep3 
-                    booking={booking} 
-                    handleOnChange={handleOnChange} 
-                    handleNextStep={handleNextStep} 
-                    handlePreviousStep={handlePreviousStep} 
-                    />;
-                case 4:
-                    return <CreateBookingStep4 
-                    booking={booking} 
-                    handleOnChange={handleOnChange} 
-                    handleNextStep={handleNextStep} 
-                    handlePreviousStep={handlePreviousStep} 
-                    handleOnSubmit={handleOnSubmit}
-                    />;
-                default:
-                    return null;
-                }
-            };
-   
+	const getAvailableTables = (date, time) => {
+		let currentBookings = 0;
+		if (bookings[date] && bookings[date][time]) {
+			currentBookings = bookings[date][time];
+		}
+		return 15 - currentBookings;
+	};
 
-    if (bookingDone) {
-        return (
-            <div className="booking booking-completed">
-                <h1>Din bokning är bekräftad!</h1>
-                <div className="booking-info">
-                <p className="booking-text">Välkommen {booking.name}</p>
-                <p className="booking-text">Antal gäster: {booking.numberOfGuests}</p>
-                <p className="booking-text">datum: {booking.date}</p>
-                <p className="booking-text">Klockan: {booking.time}:00</p>
-                </div>
-            </div>
-        );
-    }
-    
-    return (
-        <div className="booking">
-        <h1>Bokning</h1>
-         {renderStep()}
-         </div>
-    )
+	const handleOnChange = (event) => {
+		const { name, value } = event.target;
+		setBooking((prevBooking) => {
+			if (name === "firstName") {
+				return {
+					...prevBooking,
+					name: `${value} ${prevBooking.lastName}`,
+					firstName: value,
+				};
+			}
+			if (name === "lastName") {
+				return {
+					...prevBooking,
+					name: `${prevBooking.firstName} ${value}`,
+					lastName: value,
+				};
+			}
+			return { ...prevBooking, [name]: value };
+		});
+	};
 
-}
-/* 
-    return (
-        <div className="booking">
-            {isLoading ? (
-                <div className="loading-screen">
-                    <p className="loading-screen-text">Din Bokning behandlas...</p>
-                </div>
-            ) : (
-            <>
-            <h1>Bokning</h1>
-            <form onSubmit={handleOnSubmit} className="bookingForm">
-                <label htmlFor="numberOfGuests">Antal Gäster</label>
-                <input
-                    type="number"
-                    name="numberOfGuests"
-                    id="numberOfGuests"
-                    value={booking.numberOfGuests}
-                    onChange={handleOnChange}
-                    max={6}
-                    min={1}
-                />
-                <label htmlFor="name">Namn</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={booking.name}
-                    onChange={handleOnChange}
-                />
-                <label htmlFor="date">Vilket Datum</label>
-                <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    value={booking.date}
-                    onChange={handleOnChange}
-                />
-                <label htmlFor="time">Vilken Tid</label>
-                    <select
-                        value={booking.time} 
-                        onChange={handleOnChange}
-                        name="time"
-                        id="time"
-                    >
-                        <option 
-                            value="">
-                            Välj tid
-                        </option>
-                        <option 
-                            value={12}>
-                            12:00
-                        </option>
-                        <option
-                            value={20}>
-                            20:00
-                        </option>
+	const handleOnSubmit = async (event) => {
+		event.preventDefault();
+		setIsLoading(true);
 
-                    </select>
-                    <button type="submit">Boka</button>
-                </form>
-                </>
-            )}
-        </div>
-    );
-}; */
+		const availableTables = getAvailableTables(booking.date, booking.time);
+		console.log("Bord:", availableTables);
+
+		const numberOfTables = personsPerTable(booking.numberOfGuests);
+		console.log(
+			"Bord:",
+			booking.numberOfGuests,
+			"gäster",
+			numberOfTables,
+			"bord"
+		);
+
+		if (availableTables >= numberOfTables) {
+			try {
+				await HandleCreateBooking(booking);
+				setBookingDone(true);
+				setIsLoading(false);
+				console.log(booking);
+
+				setBookings((prevBookings) => {
+					const newBookings = { ...prevBookings };
+					if (!newBookings[booking.date]) {
+						newBookings[booking.date] = {};
+					}
+					if (!newBookings[booking.date][booking.time]) {
+						newBookings[booking.date][booking.time] = 0;
+					}
+					newBookings[booking.date][booking.time] += numberOfTables;
+					console.log("Updaterad bookings:", newBookings);
+					return newBookings;
+				});
+			} catch (error) {
+				setIsLoading(false);
+				console.error(error);
+				alert("Ett fel uppstod vid bokningen");
+			}
+		} else {
+			alert("Det finns inga bord lediga vid den tidpunkten");
+			setIsLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		if (JSON.stringify(bookings) === "{}") {
+			return;
+		}
+		localStorage.setItem("bookings", JSON.stringify(bookings));
+	}, [bookings]);
+
+	useEffect(() => {
+		console.log("bookingDone changed:", bookingDone);
+	}, [bookingDone]);
+
+	const handleNextStep = () => {
+		setCurrentStep(currentStep + 1);
+	};
+	const handlePreviousStep = () => {
+		setCurrentStep(currentStep - 1);
+	};
+
+	const renderStep = () => {
+		switch (currentStep) {
+			case 1:
+				return (
+					<CreateBookingStep1
+						booking={booking}
+						handleOnChange={handleOnChange}
+						handleNextStep={handleNextStep}
+					/>
+				);
+			case 2:
+				return (
+					<CreateBookingStep2
+						booking={booking}
+						handleOnChange={handleOnChange}
+						handleNextStep={handleNextStep}
+						handlePreviousStep={handlePreviousStep}
+					/>
+				);
+			case 3:
+				return (
+					<CreateBookingStep3
+						booking={booking}
+						handleOnChange={handleOnChange}
+						handleNextStep={handleNextStep}
+						handlePreviousStep={handlePreviousStep}
+					/>
+				);
+			case 4:
+				return (
+					<CreateBookingStep4
+						booking={booking}
+						handleOnChange={handleOnChange}
+						handleNextStep={handleNextStep}
+						handlePreviousStep={handlePreviousStep}
+						handleOnSubmit={handleOnSubmit}
+						getAvailableTables={getAvailableTables}
+					/>
+				);
+			default:
+				return null;
+		}
+	};
+
+	if (bookingDone) {
+		return (
+			<div className='booking booking-completed'>
+				<h1>Din bokning är bekräftad!</h1>
+				<div className='booking-info'>
+					<p className='booking-text'>Välkommen {booking.name}</p>
+					<p className='booking-text'>Antal gäster: {booking.numberOfGuests}</p>
+					<p className='booking-text'>datum: {booking.date}</p>
+					<p className='booking-text'>Klockan: {booking.time}:00</p>
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<div className='booking'>
+			{isLoading ? (
+				<div className='loading-screen'>
+					<p className='loading-screen-text'>Din Bokning behandlas...</p>
+				</div>
+			) : (
+				<>
+					<h1>Bokning</h1>
+					{renderStep()}
+				</>
+			)}
+		</div>
+	);
+};
