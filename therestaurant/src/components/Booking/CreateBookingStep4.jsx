@@ -1,76 +1,46 @@
-import React from 'react';
+
+import React from "react";
+import { useState, useEffect } from "react";
 import "./CreateBooking.css";
 
-export const CreateBookingStep4 = ({ booking, handleOnChange, handleNextStep, handlePreviousStep, handleOnSubmit }) => {
-  return (
-    <>
-    <form className="bookingForm">
-        <label htmlFor="time">Vilken Tid</label>
-                    <select
-                        value={booking.time} 
-                        onChange={handleOnChange}
-                        name="time"
-                        id="time"
-                    >
-                        <option 
-                            value="">
-                            Välj tid
-                        </option>
-                        <option 
-                            value={12}>
-                            12:00
-                        </option>
-                        <option
-                            value={20}>
-                            20:00
-                        </option>
+export const CreateBookingStep4 = ({
+	booking,
+	handleOnChange,
+	handleNextStep,
+	handlePreviousStep,
+	handleOnSubmit,
+	getAvailableTables,
+}) => {
+	const [availableTables, setAvailableTables] = useState(
+		getAvailableTables(booking.date, booking.time)
+	);
 
-                    </select>
-                    <div className="slideButtons">
-                    <button type="submit"  className="prevButtonClass" onClick={handleOnSubmit}>Boka</button>
-                    <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
-                    </div>
-            </form>     
-    </>
-  );
-};
+	useEffect(() => {
+		setAvailableTables(getAvailableTables(booking.date, booking.time));
+	}, [booking.date, booking.time, getAvailableTables]);
 
-/* 
-import React, { useState } from 'react';
-
-export const CreateBookingStep4 = ({ booking, handleOnChange, handlePreviousStep, handleOnSubmit }) => {
-  const [tablesRemaining, setTablesRemaining] = useState(10);
-  const [selectedTime, setSelectedTime] = useState("");
-
-  const handleTimeClick = (time) => {
-    setSelectedTime(time);
-  };
-
-  const handleOnSubmitWithTime = (e) => {
-    e.preventDefault();
-    if (selectedTime) {
-      handleOnSubmit(e);
-    } else {
-      alert("Please select a time");
-    }
-  };
-
-  return (
-    <>
-      <label htmlFor="time">Vilken Tid</label>
-      <div className="time-buttons">
-        <button onClick={() => handleTimeClick(12)}>12:00</button>
-        <button onClick={() => handleTimeClick(20)}>20:00</button>
-      </div>
-      {selectedTime && (
-        <p>Number of tables booked: {tablesRemaining}</p>
-      )}
-      <form className="bookingForm" onSubmit={handleOnSubmitWithTime}>
-        <button type="submit">Boka</button>
-        <button onClick={handlePreviousStep}>Previous</button>
+	return (
+		<>
+      <form className="bookingForm">
+			<label htmlFor='time'>Vilken Tid</label>
+			<select
+				value={booking.time}
+				onChange={handleOnChange}
+				name='time'
+				id='time'>
+				{/* <option value=''>Välj tid</option> */}
+				<option value={12}>12:00</option>
+				<option value={20}>20:00</option>
+			</select>
+			<button
+				type='submit'
+				onClick={handleOnSubmit}>
+				Boka
+			</button>
+			<button onClick={handlePreviousStep}>Previous</button>
+			{/* <button onClick={handleNextStep}>Next</button> */}
+			<p>Det finns {availableTables} bord kvar att boka vid den valda tiden.</p>
       </form>
-    </>
-  );
+		</>
+	);
 };
-
-*/
