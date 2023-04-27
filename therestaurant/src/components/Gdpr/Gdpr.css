@@ -65,3 +65,19 @@
 	margin-bottom: var(--spacing-xl);
 	text-decoration: underline;
 }
+
+
+@media screen and (max-width: 1024px) {
+
+	.policy-wrapper {
+		height: 100%;
+	}
+
+	.policy h1 {
+		font-size: var(--font-size-h2);
+	}
+
+	.policy p {
+		font-size: var(--font-size-base);
+	}
+}

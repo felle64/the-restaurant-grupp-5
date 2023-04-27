@@ -66,3 +66,24 @@ display: block;
   color: var(--background-color);
 
 }
+
+
+
+@media screen and (max-width: 1024px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-content h3 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .footer-content a {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
