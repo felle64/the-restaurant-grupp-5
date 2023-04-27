@@ -18,8 +18,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 60%;
-	height: 90%;
+	max-width: 80%;
+	min-height: 80%;
 	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
 	background-color: var(--accent-color-2);
 }
