@@ -57,3 +57,10 @@
   .contact-form button:active{
     transform: scale(1.1);
   }
+
+
+  @media screen and (max-width: 1024px) {
+    .contact-form {
+      max-width: 80%;
+    }
+  }

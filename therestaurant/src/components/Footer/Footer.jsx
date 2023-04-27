@@ -9,9 +9,6 @@ export const Footer = () => {
 	return (
 		<footer className='footer'>
 			<div className='footer-content'>
-				<div className='footer-section socials'>
-					<h3>THI RESTAURANT</h3>
-				</div>
 				<div className='footer-section find-us'>
 					<h3>Hitta oss:</h3>
 					<p>

@@ -82,3 +82,42 @@
 .menu-category:last-child {
 	border-right: none;
 }
+
+
+@media screen and (max-width: 1024px ) {
+	.menu {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.menu-category {
+		border-right: none;
+		border-bottom: 2px solid var(--text-color);
+	}
+
+	.menu-category:last-child {
+		border-bottom: none;
+	}
+
+	.menu-item {
+		margin-top: var(--spacing-md);
+	}
+
+	.item-desc {
+		width: 100%;
+	}
+
+	.menu-container {
+		padding: 0;
+	}
+
+	.menu-buttons {
+		align-items: center;
+		text-align: center;
+	}
+
+	.menu-button {
+		margin: var(--spacing-sm) 0;
+		width: 200px;
+		height: 75px;
+	}
+}

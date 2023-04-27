@@ -147,3 +147,55 @@
       opacity: 0;
     }
   }
+
+
+
+  @media screen and (max-width: 760px) {
+
+    .heropage-content {
+      min-width: 80%;
+      max-width: 80%;
+    }
+  
+    .heropage-title {
+      font-size: var(--font-size-h2);
+    }
+  
+    .heropage-text {
+      font-size: var(--font-size-base);
+    }
+  
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+    }
+  
+    .grid-title {
+      font-size: 2rem;
+    }
+  
+    .grid-text {
+      font-size: var(--font-size-base);
+      max-width: 80%;
+    }
+  
+    
+  }
+
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .heropage-content {
+    min-width: 60%;
+    max-width: 60%;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .grid-text {
+    font-size: var(--font-size-h4);
+    max-width: 80%;
+  }
+}
