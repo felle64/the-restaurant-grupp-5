@@ -27,6 +27,7 @@ export const AdminView = () => {
           const contractInstance = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
           setAccount(accounts[0]);
           setContract(contractInstance);
+          console.log(contractInstance);
         }
       }
 
@@ -37,12 +38,17 @@ export const AdminView = () => {
         .send({from: account})
         .once("receipt", async (receipt) => {
             console.log(receipt);
+            setContract(contract)
+            await checkRestaurantExists();
         })
     }
 
     async function checkRestaurantExists() {
-      const restaurantName = "East Harmony";
-      let restaurantCount = await contract.methods.restaurantCount().call();
+      const restaurantName = "East Harmony"
+      let restaurantCount = 0;
+       if (contract) {
+        restaurantCount = await contract.methods.restaurantCount().call();
+      } 
       console.log(restaurantCount);
       
       for (let i = 1; i <= restaurantCount; i++) {
@@ -76,6 +82,10 @@ export const AdminView = () => {
       handleConnectWallet();
       fetchBookings();
       checkRestaurantExists();
+      
+      
+      
+      
     }, []);
     
     async function handleEdit(bookingId) {
