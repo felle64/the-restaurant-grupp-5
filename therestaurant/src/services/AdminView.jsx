@@ -8,14 +8,14 @@ import './AdminView.css';
 export const AdminView = () => {
 
     const [account, setAccount] = useState("");
-    const [contract, setContract] = useState(null);
+    const [contract, setContract] = useState(null); // This has error with null until a edit in this file.
     const [restaurantExists, setRestaurantExists] = useState(false);
     const [bookings, setBookings] = useState([]);
     const [bookingIds, setBookingIds] = useState(null)
-    const [filterDate, setFilterDate] = useState(""); //låg ett "s" i useState?
-    const [filterTime, setFilterTime] = useState('');
+    const [filterDate, setFilterDate] = useState("");
+    const [filterTime, setFilterTime] = useState(null);
     const [newNumberOfGuest, setNewNumberOfGuest] = useState(1)
-    const [newName, setNewName] = useState("")
+    const [newName, setNewName] = useState("test")
     const [newDate, setNewDate] = useState("1")
     const [newTime, setNewTime] = useState(1)
     
@@ -40,9 +40,9 @@ export const AdminView = () => {
         })
     }
 
-    /* async function checkRestaurantExists() {
+    async function checkRestaurantExists() {
       const restaurantName = "East Harmony";
-      const restaurantCount = await contract.methods.restaurantCount().call();
+      let restaurantCount = await contract.methods.restaurantCount().call();
       console.log(restaurantCount);
       
       for (let i = 1; i <= restaurantCount; i++) {
@@ -53,14 +53,14 @@ export const AdminView = () => {
           break;
         }
       }
-    } */
+    }
     
 
     async function fetchBookings() {
       const contract = new window.web3.eth.Contract(ABI_ADDRESS, CONTRACT_ADDRESS);
       const restaurantId = 1; 
       const bookingIds = await contract.methods.getBookings(restaurantId).call();
-      const bookingsArray = []; // Move this line here
+      const bookingsArray = []; 
       for (let i = 0; i < bookingIds.length; i++) {
         const bookingId = bookingIds[i];
         const booking = await contract.methods.bookings(bookingId).call();
@@ -75,7 +75,7 @@ export const AdminView = () => {
     useEffect(() => {
       handleConnectWallet();
       fetchBookings();
-      /* checkRestaurantExists(); */
+      checkRestaurantExists();
     }, []);
     
     async function handleEdit(bookingId) {
@@ -116,9 +116,7 @@ export const AdminView = () => {
     return (
       <div className="admin-view">
         <h1>Admin View</h1>
-       {/*  {!restaurantExists && <button onClick={handleCreateRestaurant}>Create Restaurant</button>} */}
-
-
+        {!restaurantExists && <button onClick={handleCreateRestaurant}>Create Restaurant</button>}
 
         <input
           type="date"
@@ -157,8 +155,8 @@ export const AdminView = () => {
                   className="admin-view__edit-select"
                 >
                   <option value="">Choose time</option>
-                  <option value="12">12:00</option>
-                  <option value="20">20:00</option>
+                  <option value={12}>12:00</option>
+                  <option value={20}>20:00</option>
                 </select>
                 <button
                   onClick={() => handleEdit(booking.id)}
