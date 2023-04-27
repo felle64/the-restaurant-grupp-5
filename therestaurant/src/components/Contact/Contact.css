@@ -58,6 +58,29 @@
 	transform: scale(1.1);
 }
 
+.contact-completed {
+	text-align: center;
+	max-width: 500px;
+	min-height: 400px;
+	margin: 0 auto;
+	box-shadow: 1px 1px 5px 1px #ccc;
+	border-radius: 20px;
+	padding: var(--spacing-sm);
+	color: var(--text-color);
+}
+
+.contact-completed p {
+	max-width: 350px;
+	margin: 5px auto;
+	font-size: var(--font-size-h3);
+}
+
+.completed-phone {
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-bold);
+	margin-bottom: var(--spacing-md);
+}
+
 @media screen and (max-width: 1024px) {
 	.contact-form {
 		max-width: 80%;
