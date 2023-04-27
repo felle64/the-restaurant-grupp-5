@@ -37,7 +37,7 @@ export const CreateBookingStep4 = ({
 					disabled={!booking.time}>
 					Boka
 				</button>
-				<button onClick={handlePreviousStep}>Previous</button>
+				<button onClick={handlePreviousStep}>Tilbaka</button>
 				{booking.time ? (
 					<p>
 						Det finns {availableTables} bord kvar att boka vid den valda tiden.

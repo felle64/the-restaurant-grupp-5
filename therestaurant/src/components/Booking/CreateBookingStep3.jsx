@@ -33,8 +33,8 @@ export const CreateBookingStep3 = ({ booking, handleOnChange, handleNextStep, ha
         required
       />
       <div className="slideButtons">
-          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
-          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Next</button>
+          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Tilbaka</button>
+          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Nästa</button>
       </div>
     </form>
     </>
