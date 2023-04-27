@@ -1,38 +1,193 @@
-.App {
-  text-align: center;
+.heropage {
+	max-height: 100vh;
+}
+.heropage-img {
+	height: 100vh;
+	width: 100%;
+	object-fit: cover;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	opacity: 0.9;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.heropage-wrapper {
+	height: 85vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.heropage-content {
+	min-width: 20%;
+	max-width: 40%;
+	min-height: 60%;
+	max-height: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: var(--spacing-xl);
+	border-radius: var(--border-radius-lg);
+	color: var(--text-color);
+	background-color: rgba(var(--primary-color-rgba), 0.7);
+	backdrop-filter: blur(5px);
+	box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.heropage-title {
+	font-size: var(--font-size-h1);
+	font-weight: var(--font-weight-bold);
 }
 
-.App-link {
-  color: #61dafb;
+.heropage-text {
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight-light);
+	max-width: 80%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.heropage-button {
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight-bold);
+	padding: var(--spacing-md);
+	border-radius: var(--border-radius-md);
+	transition: var(--transition-standard);
+	cursor: pointer;
+	outline: none;
+	border: 1px solid var(--text-color);
+	background-color: transparent;
+}
+
+.heropage-button:hover {
+	background-color: var(--accent-color-2);
+	color: var(--primary-color);
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	padding: 40px;
+	gap: 1rem;
+	background-color: var(--accent-color-2);
+}
+
+.grid-content {
+	position: relative;
+	background-color: var(--background-color);
+	height: 70vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.grid-img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.grid-title {
+	font-size: 3rem;
+	font-weight: var(--font-weight-bold);
+	color: var(--text-color);
+	margin: 0;
+	padding: 0;
+}
+
+.grid-text {
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight-regular);
+	color: var(--text-color);
+	max-width: 60%;
+	margin: 0;
+	padding: 0;
+}
+
+.grid-button {
+	font-size: var(--font-size-h4);
+	font-weight: var(--font-weight-regular);
+	padding: var(--spacing-md) var(--spacing-xxl);
+	transition: var(--transition-standard);
+	cursor: pointer;
+	outline: none;
+	border: var(--border-width-md) solid var(--text-color);
+	background-color: var(--background-color);
+}
+
+.grid-button:hover {
+	background-color: var(--accent-color-2);
+	color: var(--background-color);
+}
+
+.back-button {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: var(--spacing-md);
+	background-color: var(--background-color);
+	border: none;
+	color: var(--text-color);
+	font-size: var(--font-size-h4);
+	cursor: pointer;
+	transition: var(--transition-standard);
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-md);
+}
+
+.back-button:hover {
+	background-color: var(--accent-color-2);
+	color: var(--background-color);
+	box-shadow: var(--shadow-md);
+}
+
+@media screen and (max-width: 760px) {
+	.heropage-content {
+		min-width: 80%;
+		max-width: 80%;
+	}
+
+	.heropage-title {
+		font-size: var(--font-size-h2);
+	}
+
+	.heropage-text {
+		font-size: var(--font-size-base);
+	}
+
+	.grid-container {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(4, 1fr);
+	}
+
+	.grid-title {
+		font-size: 2rem;
+	}
+
+	.grid-text {
+		font-size: var(--font-size-base);
+		max-width: 80%;
+	}
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+	.heropage-content {
+		min-width: 60%;
+		max-width: 60%;
+	}
+
+	.grid-container {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+
+	.grid-text {
+		font-size: var(--font-size-h4);
+		max-width: 80%;
+	}
 }

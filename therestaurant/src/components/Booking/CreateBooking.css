@@ -1,0 +1,118 @@
+.booking {
+	background-color: #f5f5f5;
+	padding: 50px 0;
+	text-align: center;
+	height: 85vh;
+}
+.bookingForm {
+	background-color: #fff;
+	padding: 50px 0;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.loading-screen {
+	width: 125px;
+	height: 125px;
+	background-color: var(--accent-color-2);
+	border-radius: 50%;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	animation: pulse 2s ease-in-out infinite;
+	font-weight: var(--);
+}
+
+.booking-completed {
+	background-color: var(--accent-color-2);
+	color: var(--text-color);
+	padding: 50px 0;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-info {
+	max-width: 20rem;
+    margin: 0 auto;
+}
+
+.booking-text {
+    padding: var(--spacing-lg);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    margin: 0 auto;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-h4);
+}
+
+.input {
+    text-transform: uppercase;
+}
+
+
+.firstNameClass, .lastNameClass  {
+
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	}
+
+.firstNameClass:first-letter, .lastNameClass:first-letter {
+	text-transform: uppercase; /* set text-transform to uppercase for the first letter only */
+}
+
+.prevButtonClass, .nextButtonClass{
+	
+		background-color: #ffffff;
+		padding: 10px 20px;
+		border: solid #000000 1px;
+		border-radius: 2px;
+		margin: 1px;
+		width: 150px;
+		margin: 10px;
+		display: flex;
+}
+
+.slideButtons {
+	display: flex;
+    flex-direction: column;
+}
+
+.GuestButtonClass {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border: solid #000000 1px;
+    border-radius: 2px;
+    margin: 1px;
+}
+
+.GuestButtonClass:hover {
+    background-color: #0000000e;
+}
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	50% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
