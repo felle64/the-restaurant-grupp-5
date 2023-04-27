@@ -32,14 +32,17 @@ export const CreateBookingStep4 = ({
 				<option value={12}>12:00</option>
 				<option value={20}>20:00</option>
 			</select>
+			
 			<button
+				className="prevButtonClass"
 				type='submit'
 				onClick={handleOnSubmit}>
 				Boka
 			</button>
-			<button onClick={handlePreviousStep}>Previous</button>
+			<button className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
 			{/* <button onClick={handleNextStep}>Next</button> */}
 			<p>Det finns {availableTables} bord kvar att boka vid den valda tiden.</p>
+			
       </form>
 		</>
 	);
