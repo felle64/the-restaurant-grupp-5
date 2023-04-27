@@ -10,7 +10,7 @@ import { GetAllBookings } from "../../services/getAllBookings";
 
 export const CreateBooking = () => {
 	const [currentStep, setCurrentStep] = useState(1);
-	const [booking, setBooking] = useState(new Booking(1, "", " ", "1", 1));
+	const [booking, setBooking] = useState(new Booking(1, "", " ", "", 1));
 	const [isLoading, setIsLoading] = useState(false);
 	const [bookingDone, setBookingDone] = useState(false);
 	const [bookings, setBookings] = useState([]);
