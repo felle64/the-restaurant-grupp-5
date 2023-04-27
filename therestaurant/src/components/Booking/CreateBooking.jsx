@@ -37,7 +37,15 @@ export const CreateBooking = () => {
 
     };
 
-    const handleNextStep = () => { setCurrentStep(currentStep + 1); };
+    const handleNextStep = () => {
+        const form = document.querySelector('form');
+        if (form.checkValidity()) {
+          setCurrentStep(currentStep + 1);
+        } else {
+          form.reportValidity();
+        }
+      };
+
     const handlePreviousStep = () => { setCurrentStep(currentStep - 1); };
 
     const renderStep = () => {

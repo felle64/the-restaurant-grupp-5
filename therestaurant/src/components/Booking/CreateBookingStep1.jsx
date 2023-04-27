@@ -1,25 +1,24 @@
-
+import './GuestButton.css';
 
 export const CreateBookingStep1 = ({ booking, handleOnChange, handleNextStep }) => {
-
-
-    return (<>
-    
-
-            <form className="bookingForm">
-                <label htmlFor="numberOfGuests">Antal Gäster</label>
-                <input
-                    type="number"
-                    name="numberOfGuests"
-                    id="numberOfGuests"
-                    value={booking.numberOfGuests}
-                    onChange={handleOnChange}
-                    max={6}
-                    min={1}
-                    required
-                />
-            <button onClick={handleNextStep}>Nästa</button>
-           </form>
-
-    </>)
-}
+    const guests = [1, 2, 3, 4, 5, 6]; // array of guest options
+  
+    return (
+      <>
+        <form className="bookingForm">
+          <label htmlFor="numberOfGuests">Antal Gäster</label>
+          <div className="guest-buttons">
+            {guests.map((guestsCount) => (
+              <button key={guestsCount} onClick={() => {
+                handleOnChange({ target: { name: "numberOfGuests", value: guestsCount }});
+                handleNextStep();
+              }}>
+                {guestsCount}
+              </button>
+            ))}
+          </div>
+        </form>
+      </>
+    );
+  };
+  
