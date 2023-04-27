@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect } from "react";
 import "./CreateBooking.css";
@@ -21,26 +20,30 @@ export const CreateBookingStep4 = ({
 
 	return (
 		<>
-      <form className="bookingForm">
-			<label htmlFor='time'>Vilken Tid</label>
-			<select
-				value={booking.time}
-				onChange={handleOnChange}
-				name='time'
-				id='time'>
-				{/* <option value=''>Välj tid</option> */}
-				<option value={12}>12:00</option>
-				<option value={20}>20:00</option>
-			</select>
-			<button
-				type='submit'
-				onClick={handleOnSubmit}>
-				Boka
-			</button>
-			<button onClick={handlePreviousStep}>Previous</button>
-			{/* <button onClick={handleNextStep}>Next</button> */}
-			<p>Det finns {availableTables} bord kvar att boka vid den valda tiden.</p>
-      </form>
+			<form className='bookingForm'>
+				<label htmlFor='time'>Vilken Tid</label>
+				<select
+					value={booking.time}
+					onChange={handleOnChange}
+					name='time'
+					id='time'>
+					<option value=''>Välj tid</option>
+					<option value={12}>12:00</option>
+					<option value={20}>20:00</option>
+				</select>
+				<button
+					type='submit'
+					onClick={handleOnSubmit}
+					disabled={!booking.time}>
+					Boka
+				</button>
+				<button onClick={handlePreviousStep}>Previous</button>
+				{booking.time ? (
+					<p>
+						Det finns {availableTables} bord kvar att boka vid den valda tiden.
+					</p>
+				) : null}
+			</form>
 		</>
 	);
 };
