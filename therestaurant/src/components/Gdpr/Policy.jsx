@@ -13,20 +13,29 @@ export const Policy = () => {
 				<h3>1. Vilken information samlar vi in?</h3>
 
 				<p>
-					<strong>Vi samlar in följande typer av information från våra användare:</strong><br/>
+					<strong>
+						Vi samlar in följande typer av information från våra användare:
+					</strong>
+					<br />
 					Personlig information: När du registrerar dig eller bokar på vår
 					webbplats kan vi samla in personlig information såsom ditt namn,
-					e-postadress och telefonnummer.<br/>Användningsdata: Vi samlar in
-					information om hur du använder vår webbplats, inklusive sidor du
-					besöker, tid som spenderas på sidorna och vilka enheter eller
-					webbläsare du använder.
+					e-postadress och telefonnummer.
+					<br />
+					Användningsdata: Vi samlar in information om hur du använder vår
+					webbplats, inklusive sidor du besöker, tid som spenderas på sidorna
+					och vilka enheter eller webbläsare du använder.
 				</p>
 				<h3>2. Hur använder vi din information?</h3>
 				<p>
 					Vi använder din information för att: Förbättra och anpassa din
-					upplevelse på vår webbplats.<br/>Tillhandahålla tjänster och funktioner
-					som du begär, såsom att boka bord.<br/>Skicka marknadsföringsmaterial
-					och uppdateringar om vår verksamhet, om du har gett ditt samtycke.<br/>
+					upplevelse på vår webbplats.
+					<br />
+					Tillhandahålla tjänster och funktioner som du begär, såsom att boka
+					bord.
+					<br />
+					Skicka marknadsföringsmaterial och uppdateringar om vår verksamhet, om
+					du har gett ditt samtycke.
+					<br />
 					Analysera användarbeteende och förstå hur vi kan förbättra vår
 					webbplats.
 				</p>
@@ -40,11 +49,14 @@ export const Policy = () => {
 				</p>
 				<h3>4. Dina rättigheter</h3>
 				<p>
-					<strong>Du har rätt att:</strong><br/> Begära tillgång till din personliga information och
-					information om hur vi använder den.<br/>Begära rättelse av felaktig
-					eller ofullständig information.<br/>Begära radering av din personliga
-					information, under förutsättning att vi inte har några lagliga skäl
-					att behålla den.
+					<strong>Du har rätt att:</strong>
+					<br /> Begära tillgång till din personliga information och information
+					om hur vi använder den.
+					<br />
+					Begära rättelse av felaktig eller ofullständig information.
+					<br />
+					Begära radering av din personliga information, under förutsättning att
+					vi inte har några lagliga skäl att behålla den.
 				</p>
 			</div>
 		</div>

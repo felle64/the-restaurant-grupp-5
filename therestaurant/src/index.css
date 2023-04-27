@@ -1,3 +1,18 @@
+@import "./Styles/Color.css";
+@import "./Styles/Typography.css";
+@import "./Styles/Border.css";
+@import "./Styles/Shadow.css";
+@import "./Styles/Spacing.css";
+@import "./Styles/Transition.css";
+@import "./Styles/Animations.css";
+@import "normalize.css";
+
+* {
+  box-sizing: border-box;
+    font-family: var(--primary-font);
+    animation: var(--fade-standard);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

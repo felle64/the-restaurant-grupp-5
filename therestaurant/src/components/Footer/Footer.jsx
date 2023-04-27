@@ -16,7 +16,7 @@ export const Footer = () => {
 						<a
 							href='https://www.google.com/maps/place/East/@59.3407965,18.0497672,14z/data=!4m10!1m2!2m1!1sstockholm+east+harmony!3m6!1s0x465f9d415f58b6f9:0xa2a5da0f079b7546!8m2!3d59.3357226!4d18.0724828!15sChZzdG9ja2hvbG0gZWFzdCBoYXJtb255WhgiFnN0b2NraG9sbSBlYXN0IGhhcm1vbnmSARRwYW5fYXNpYW5fcmVzdGF1cmFudOABAA!16s%2Fg%2F11dyl45yq'
 							target='_blank'>
-							THI RESTAURANT, 123 45 Stockholm
+							EAST HARMONY, 123 45 Stockholm
 						</a>
 					</p>
 					<p>

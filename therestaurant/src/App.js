@@ -3,7 +3,6 @@ import foodImage from "./Images/Food.png";
 import backgroundImage from "./Images/Background.png";
 import history from "./Images/History.jpg";
 import { Footer } from "./components/Footer/Footer";
-import { Gdpr } from "./components/Gdpr/Gdpr";
 import { Link } from "react-router-dom";
 
 function App() {
@@ -13,11 +12,11 @@ function App() {
 				<div className='heropage-content'>
 					<h1 className='heropage-title'>East Harmony</h1>
 					<p className='heropage-text'>
-						Njut av en fusion mellan det asiatiska och det svenska. Kraftfulla
-						smaker satt i en perfekt balans.
+						Njut av en fusion mellan det asiatiska och det svenska köket.
+						Kraftfulla smaker satt i en perfekt balans.
 					</p>
-					<Link to="/booking">
-					<button className='heropage-button'>Book a table</button>
+					<Link to='/booking'>
+						<button className='heropage-button'>Book a table</button>
 					</Link>
 				</div>
 			</div>

@@ -29,11 +29,11 @@ export const Gdpr = () => {
 			<div className='gdpr'>
 				<p>
 					Vi använder cookies för att förbättra din upplevelse på vår webbplats.
-					Genom att fortsätta använda webbplatsen godkänner du vår 
+					Genom att fortsätta använda webbplatsen godkänner du vår
 					<a
 						href='/policy'
 						target='_blank'>
-						 integritetspolicy
+						integritetspolicy
 					</a>
 					.
 				</p>

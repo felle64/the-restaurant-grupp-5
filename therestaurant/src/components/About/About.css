@@ -1,66 +1,64 @@
 .about-container {
-    position: relative;
-    padding: 1rem;
-    text-align: justify;
-    background-color: var(--background-color);
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--background-color);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+	position: relative;
+	padding: 1rem;
+	text-align: justify;
+	background-color: var(--background-color);
+	height: 85vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: var(--background-color);
+	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
 }
 
 .about-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    height: 90%;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
-    background-color: var(--accent-color-2);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 60%;
+	height: 90%;
+	box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+	background-color: var(--accent-color-2);
 }
 
-
 .about-title {
-    font-size: var(--font-size-h1);
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    text-align: center;
+	font-size: var(--font-size-h1);
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	text-align: center;
 }
 
 .about-text {
-    position: relative;
-    font-size: var(--font-size-base);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    width: 60%;
+	position: relative;
+	font-size: var(--font-size-base);
+	line-height: 1.5;
+	margin-bottom: 1rem;
+	width: 60%;
 }
 
-
 @media screen and (max-width: 1024px) {
-    .about-container {
-        height: 80%;
-    }
+	.about-container {
+		height: 80%;
+	}
 
-    .about-wrapper {
-        width: 90%;
-        height: 90%;
-    }
+	.about-wrapper {
+		width: 90%;
+		height: 90%;
+	}
 
-    .about-title {
-        font-size: var(--font-size-h2);
-    }
+	.about-title {
+		font-size: var(--font-size-h2);
+	}
 
-    .about-text {
-        font-size: var(--font-size-vase);
-        width: 90%;
-    }
+	.about-text {
+		font-size: var(--font-size-vase);
+		width: 90%;
+	}
 
-    .back-button {
-        display: none;
-    }
+	.back-button {
+		display: none;
+	}
 }

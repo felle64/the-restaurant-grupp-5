@@ -1,5 +1,5 @@
 import React from "react";
-import { menuItems, MenuCategory, dinnerItems } from "./MenuData";
+import { MenuCategory, dinnerItems } from "./MenuData";
 
 export const DinnerMenu = () => {
 	return (
