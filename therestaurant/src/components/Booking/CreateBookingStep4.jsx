@@ -3,47 +3,45 @@ import { useState, useEffect } from "react";
 import "./CreateBooking.css";
 
 export const CreateBookingStep4 = ({
-	booking,
-	handleOnChange,
-	handleNextStep,
-	handlePreviousStep,
-	handleOnSubmit,
-	getAvailableTables,
+  booking,
+  handleOnChange,
+  handleNextStep,
+  handlePreviousStep,
+  handleOnSubmit,
+  getAvailableTables,
 }) => {
-	const [availableTables, setAvailableTables] = useState(
-		getAvailableTables(booking.date, booking.time)
-	);
+  const [availableTables, setAvailableTables] = useState(
+    getAvailableTables(booking.date, booking.time)
+  );
 
-	useEffect(() => {
-		setAvailableTables(getAvailableTables(booking.date, booking.time));
-	}, [booking.date, booking.time, getAvailableTables]);
+  useEffect(() => {
+    setAvailableTables(getAvailableTables(booking.date, booking.time));
+  }, [booking.date, booking.time, getAvailableTables]);
 
-	return (
-		<>
-			<form className='bookingForm'>
-				<label htmlFor='time'>Vilken Tid</label>
-				<select
-					value={booking.time}
-					onChange={handleOnChange}
-					name='time'
-					id='time'>
-					<option value=''>Välj tid</option>
-					<option value={12}>12:00</option>
-					<option value={20}>20:00</option>
-				</select>
-				<button
-					type='submit'
-					onClick={handleOnSubmit}
-					disabled={!booking.time}>
-					Boka
-				</button>
-				<button onClick={handlePreviousStep}>Tilbaka</button>
-				{booking.time ? (
-					<p>
-						Det finns {availableTables} bord kvar att boka vid den valda tiden.
-					</p>
-				) : null}
-			</form>
-		</>
-	);
+  return (
+    <>
+      <form className="bookingForm">
+        <label htmlFor="time">Vilken Tid</label>
+        <select
+          value={booking.time}
+          onChange={handleOnChange}
+          name="time"
+          id="time"
+        >
+          <option value="">Välj tid</option>
+          <option value={12}>12:00</option>
+          <option value={20}>20:00</option>
+        </select>
+        <button type="submit" onClick={handleOnSubmit} disabled={!booking.time}>
+          Boka
+        </button>
+        <button onClick={handlePreviousStep}>Tilbaka</button>
+        {booking.time ? (
+          <p>
+            Det finns {availableTables} bord kvar att boka vid den valda tiden.
+          </p>
+        ) : null}
+      </form>
+    </>
+  );
 };
