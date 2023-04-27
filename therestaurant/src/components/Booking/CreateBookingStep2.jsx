@@ -1,19 +1,20 @@
-
+import React from 'react';
+import "./CreateBooking.css";
 
 export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, handlePreviousStep, lastName }) => {
 
-    const handleCheckValue = () => {
-        console.log(booking);
-    }
+  
     
 
     return (
         <>
+         <form className="bookingForm">
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
             name="firstName"
             id="firstName"
+            className="firstNameClass"
             value={booking.firstName}
             onChange={handleOnChange}
             required
@@ -23,14 +24,18 @@ export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, ha
             type="text"
             name="lastName"
             id="lastName"
+            className="lastNameClass"
             value={lastName}
             onChange={handleOnChange}
-            required={true}
+            required
           />
-          <button onClick={handlePreviousStep}>Previous</button>
-          <button onClick={handleNextStep}>Next</button>
-          <button onClick={handleCheckValue}>Check</button>
+          <div className="slideButtons">
+          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
+          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Next</button>
+          </div>
+          </form>
           </>
+
       );
       
 }
