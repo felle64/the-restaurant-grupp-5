@@ -69,7 +69,7 @@ export const AdminView = () => {
         setBookings(bookingsArray);
         console.log(bookingsArray);
       }
-      setBookings([...bookings, ...bookingsArray]);
+      setBookings([...bookingsArray]);
     };
 
     useEffect(() => {
@@ -87,13 +87,13 @@ export const AdminView = () => {
         newDate,
         newTime
       );
-      
+      fetchBookings();
     }
 
     async function handleRemove(bookingId) {
       console.log(bookingId);
       await RemoveBookings(bookingId);
-      
+      fetchBookings();
     }
     
     function filterBookings(bookings, filterDate, filterTime) {
