@@ -9,7 +9,7 @@ export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, ha
     return (
         <>
          <form className="bookingForm">
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="firstName">Förnamn:</label>
           <input
             type="text"
             name="firstName"
@@ -19,7 +19,7 @@ export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, ha
             onChange={handleOnChange}
             required
           />
-          <label htmlFor="lastName">Last Name:</label>
+          <label htmlFor="lastName">Efternamn:</label>
           <input
             type="text"
             name="lastName"
@@ -30,8 +30,8 @@ export const CreateBookingStep2 = ({ booking, handleOnChange, handleNextStep, ha
             required
           />
           <div className="slideButtons">
-          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
-          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Next</button>
+          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Tilbaka</button>
+          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Nästa</button>
           </div>
           </form>
           </>
