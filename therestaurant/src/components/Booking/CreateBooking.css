@@ -66,8 +66,7 @@
 	margin: 2px 0px 10px 0px;
 	}
 
-.firstNameClass::first-letter, .lastNameClass::first-letter {
-	color: red;
+.firstNameClass:first-letter, .lastNameClass:first-letter {
 	text-transform: uppercase; /* set text-transform to uppercase for the first letter only */
 }
 
@@ -81,9 +80,6 @@
 		width: 150px;
 		margin: 10px;
 		display: flex;
-
-	
-	
 }
 
 .slideButtons {

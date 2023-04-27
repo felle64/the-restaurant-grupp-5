@@ -1,4 +1,5 @@
 import React from 'react';
+import "./CreateBooking.css";
 
 export const CreateBookingStep3 = ({ booking, handleOnChange, handleNextStep, handlePreviousStep }) => {
 
@@ -31,8 +32,10 @@ export const CreateBookingStep3 = ({ booking, handleOnChange, handleNextStep, ha
         min={todayFormatted}
         required
       />
-      <button onClick={handlePreviousStep}>Previous</button>
-      <button onClick={handleNextStep}>Next</button>
+      <div className="slideButtons">
+          <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
+          <button id="nextButton" className="nextButtonClass" onClick={handleNextStep}>Next</button>
+      </div>
     </form>
     </>
   );

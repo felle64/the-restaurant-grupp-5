@@ -1,8 +1,10 @@
 import React from 'react';
+import "./CreateBooking.css";
 
 export const CreateBookingStep4 = ({ booking, handleOnChange, handleNextStep, handlePreviousStep, handleOnSubmit }) => {
   return (
     <>
+    <form className="bookingForm">
         <label htmlFor="time">Vilken Tid</label>
                     <select
                         value={booking.time} 
@@ -24,9 +26,11 @@ export const CreateBookingStep4 = ({ booking, handleOnChange, handleNextStep, ha
                         </option>
 
                     </select>
-                    <button type="submit" onClick={handleOnSubmit}>Boka</button>
-                    <button onClick={handlePreviousStep}>Previous</button>
-                    
+                    <div className="slideButtons">
+                    <button type="submit"  className="prevButtonClass" onClick={handleOnSubmit}>Boka</button>
+                    <button id="prevButton" className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
+                    </div>
+            </form>     
     </>
   );
 };
