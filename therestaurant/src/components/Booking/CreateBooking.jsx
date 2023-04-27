@@ -6,42 +6,36 @@ import { CreateBookingStep1 } from "./CreateBookingStep1";
 import { CreateBookingStep2 } from "./CreateBookingStep2";
 import { CreateBookingStep3 } from "./CreateBookingStep3";
 import { CreateBookingStep4 } from "./CreateBookingStep4";
+import { GetAllBookings } from "../../services/getAllBookings";
 
 export const CreateBooking = () => {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [booking, setBooking] = useState(new Booking(1, "", " ", "1", 1));
 	const [isLoading, setIsLoading] = useState(false);
 	const [bookingDone, setBookingDone] = useState(false);
-	const [bookings, setBookings] = useState({});
+	const [bookings, setBookings] = useState([]);
+	const [bookedTables, setBookedTables] = useState([]);
 
-	const maxPerTable = 6;
-
-	function personsPerTable(guests) {
-		let tables = 0;
-		let remainingGuests = guests;
-
-		while (remainingGuests > 0) {
-			tables++;
-			remainingGuests -= maxPerTable;
-		}
-
-		console.log("Per bord:", guests, "gäster", tables);
-		return tables;
-	}
+	const restaurantId = 1;
 
 	useEffect(() => {
-		const storedBookings = localStorage.getItem("bookings");
-		if (storedBookings) {
-			setBookings(JSON.parse(storedBookings));
+		async function fetchBookings() {
+			const fetchedBookings = await GetAllBookings(restaurantId);
+			setBookings(fetchedBookings);
 		}
+
+		fetchBookings();
 	}, []);
 
 	const getAvailableTables = (date, time) => {
-		let currentBookings = 0;
-		if (bookings[date] && bookings[date][time]) {
-			currentBookings = bookings[date][time];
-		}
-		return 15 - currentBookings;
+		const totalTables = 15;
+		const bookingsForDateTime = bookings.filter(
+			(booking) => booking.date === date && booking.time === time
+		);
+
+		const numberOfBookings = bookingsForDateTime.length;
+		const availableTables = totalTables - numberOfBookings;
+		return availableTables;
 	};
 
 	const handleOnChange = (event) => {
@@ -70,36 +64,13 @@ export const CreateBooking = () => {
 		setIsLoading(true);
 
 		const availableTables = getAvailableTables(booking.date, booking.time);
-		console.log("Bord:", availableTables);
 
-		const numberOfTables = personsPerTable(booking.numberOfGuests);
-		console.log(
-			"Bord:",
-			booking.numberOfGuests,
-			"gäster",
-			numberOfTables,
-			"bord"
-		);
-
-		if (availableTables >= numberOfTables) {
+		if (availableTables) {
 			try {
 				await HandleCreateBooking(booking);
 				setBookingDone(true);
 				setIsLoading(false);
 				console.log(booking);
-
-				setBookings((prevBookings) => {
-					const newBookings = { ...prevBookings };
-					if (!newBookings[booking.date]) {
-						newBookings[booking.date] = {};
-					}
-					if (!newBookings[booking.date][booking.time]) {
-						newBookings[booking.date][booking.time] = 0;
-					}
-					newBookings[booking.date][booking.time] += numberOfTables;
-					console.log("Updaterad bookings:", newBookings);
-					return newBookings;
-				});
 			} catch (error) {
 				setIsLoading(false);
 				console.error(error);
@@ -112,24 +83,25 @@ export const CreateBooking = () => {
 	};
 
 	useEffect(() => {
-		if (JSON.stringify(bookings) === "{}") {
-			return;
+		async function fetchBookedTables() {
+			const fetchedBookings = await GetAllBookings(restaurantId);
+			const fetchedBookedTables = fetchedBookings.map(
+				(booking) => booking.tableNumber
+			);
+			setBookedTables(fetchedBookedTables);
 		}
-		localStorage.setItem("bookings", JSON.stringify(bookings));
-	}, [bookings]);
 
-	useEffect(() => {
-		console.log("bookingDone changed:", bookingDone);
-	}, [bookingDone]);
+		fetchBookedTables();
+	}, []);
 
 	const handleNextStep = () => {
-        const form = document.querySelector('form');
-        if (form.checkValidity()) {
-          setCurrentStep(currentStep + 1);
-        } else {
-          form.reportValidity();
-        }
-      };
+		const form = document.querySelector("form");
+		if (form.checkValidity()) {
+			setCurrentStep(currentStep + 1);
+		} else {
+			form.reportValidity();
+		}
+	};
 	const handlePreviousStep = () => {
 		setCurrentStep(currentStep - 1);
 	};
@@ -166,6 +138,7 @@ export const CreateBooking = () => {
 				return (
 					<CreateBookingStep4
 						booking={booking}
+						bookings={bookings}
 						handleOnChange={handleOnChange}
 						handlePreviousStep={handlePreviousStep}
 						handleOnSubmit={handleOnSubmit}
@@ -184,7 +157,7 @@ export const CreateBooking = () => {
 				<div className='booking-info'>
 					<p className='booking-text'>Välkommen {booking.name}</p>
 					<p className='booking-text'>Antal gäster: {booking.numberOfGuests}</p>
-					<p className='booking-text'>datum: {booking.date}</p>
+					<p className='booking-text'>Datum: {booking.date}</p>
 					<p className='booking-text'>Klockan: {booking.time}:00</p>
 				</div>
 			</div>
@@ -195,7 +168,7 @@ export const CreateBooking = () => {
 		<div className='booking'>
 			{isLoading ? (
 				<div className='loading-screen'>
-					<p className='loading-screen-text'>Din Bokning behandlas...</p>
+					<p className='loading-screen-text'>Din bokning behandlas...</p>
 				</div>
 			) : (
 				<>
