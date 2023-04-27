@@ -9,6 +9,10 @@
 	padding: 50px 0;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .loading-screen {
@@ -45,6 +49,58 @@
     margin: 0 auto;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-h4);
+}
+
+.input {
+    text-transform: uppercase;
+}
+
+
+.firstNameClass, .lastNameClass  {
+
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	outline: none;
+	margin: 2px 0px 10px 0px;
+	}
+
+.firstNameClass::first-letter, .lastNameClass::first-letter {
+	color: red;
+	text-transform: uppercase; /* set text-transform to uppercase for the first letter only */
+}
+
+.prevButtonClass, .nextButtonClass{
+	
+		background-color: #ffffff;
+		padding: 10px 20px;
+		border: solid #000000 1px;
+		border-radius: 2px;
+		margin: 1px;
+		width: 150px;
+		margin: 10px;
+		display: flex;
+
+	
+	
+}
+
+.slideButtons {
+	display: flex;
+    flex-direction: column;
+}
+
+.GuestButtonClass {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border: solid #000000 1px;
+    border-radius: 2px;
+    margin: 1px;
+}
+
+.GuestButtonClass:hover {
+    background-color: #0000000e;
 }
 
 
