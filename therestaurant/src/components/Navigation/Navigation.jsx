@@ -14,7 +14,7 @@ export const Navigation = () => {
 
     return (
         <nav className={`navbar ${currentPage === '/' ? 'navbar-transparent' : 'navbar-colored'}`}>
-            <div className="navbar-brand">THI RESTUARNT</div>
+            <div className="navbar-brand">EAST HARMONY</div>
             <div className={`hamburger-menu ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
                 <div className="bar"></div>
                 <div className="bar"></div>
