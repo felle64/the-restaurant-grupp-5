@@ -1,5 +1,7 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
+import "./CreateBooking.css";
 
 export const CreateBookingStep4 = ({
 	booking,
@@ -19,6 +21,7 @@ export const CreateBookingStep4 = ({
 
 	return (
 		<>
+      <form className="bookingForm">
 			<label htmlFor='time'>Vilken Tid</label>
 			<select
 				value={booking.time}
@@ -37,6 +40,7 @@ export const CreateBookingStep4 = ({
 			<button onClick={handlePreviousStep}>Previous</button>
 			{/* <button onClick={handleNextStep}>Next</button> */}
 			<p>Det finns {availableTables} bord kvar att boka vid den valda tiden.</p>
+      </form>
 		</>
 	);
 };

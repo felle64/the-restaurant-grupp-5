@@ -123,8 +123,13 @@ export const CreateBooking = () => {
 	}, [bookingDone]);
 
 	const handleNextStep = () => {
-		setCurrentStep(currentStep + 1);
-	};
+        const form = document.querySelector('form');
+        if (form.checkValidity()) {
+          setCurrentStep(currentStep + 1);
+        } else {
+          form.reportValidity();
+        }
+      };
 	const handlePreviousStep = () => {
 		setCurrentStep(currentStep - 1);
 	};
@@ -162,7 +167,6 @@ export const CreateBooking = () => {
 					<CreateBookingStep4
 						booking={booking}
 						handleOnChange={handleOnChange}
-						handleNextStep={handleNextStep}
 						handlePreviousStep={handlePreviousStep}
 						handleOnSubmit={handleOnSubmit}
 						getAvailableTables={getAvailableTables}
