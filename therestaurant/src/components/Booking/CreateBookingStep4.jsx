@@ -37,6 +37,7 @@ export const CreateBookingStep4 = ({
           className="prevButtonClass"
           type="submit"
           onClick={handleOnSubmit}
+          disabled={!booking.time} 
         >
           Boka
         </button>
