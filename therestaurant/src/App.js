@@ -16,7 +16,7 @@ function App() {
 						Kraftfulla smaker satt i en perfekt balans.
 					</p>
 					<Link to='/booking'>
-						<button className='heropage-button'>Book a table</button>
+						<button className='heropage-button'>Boka ett bord</button>
 					</Link>
 				</div>
 			</div>

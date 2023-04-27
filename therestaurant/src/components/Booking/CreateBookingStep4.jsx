@@ -1,26 +1,25 @@
-
 import React from "react";
 import { useState, useEffect } from "react";
 import "./CreateBooking.css";
 
 export const CreateBookingStep4 = ({
-	booking,
-	handleOnChange,
-	handleNextStep,
-	handlePreviousStep,
-	handleOnSubmit,
-	getAvailableTables,
+  booking,
+  handleOnChange,
+  handleNextStep,
+  handlePreviousStep,
+  handleOnSubmit,
+  getAvailableTables,
 }) => {
-	const [availableTables, setAvailableTables] = useState(
-		getAvailableTables(booking.date, booking.time)
-	);
+  const [availableTables, setAvailableTables] = useState(
+    getAvailableTables(booking.date, booking.time)
+  );
 
-	useEffect(() => {
-		setAvailableTables(getAvailableTables(booking.date, booking.time));
-	}, [booking.date, booking.time, getAvailableTables]);
+  useEffect(() => {
+    setAvailableTables(getAvailableTables(booking.date, booking.time));
+  }, [booking.date, booking.time, getAvailableTables]);
 
-	return (
-		<>
+  return (
+    <>
       <form className="bookingForm">
 			<label htmlFor='time'>Vilken Tid</label>
 			<select
@@ -42,8 +41,7 @@ export const CreateBookingStep4 = ({
 			<button className="prevButtonClass" onClick={handlePreviousStep}>Previous</button>
 			{/* <button onClick={handleNextStep}>Next</button> */}
 			<p>Det finns {availableTables} bord kvar att boka vid den valda tiden.</p>
-			
       </form>
-		</>
-	);
+    </>
+  );
 };
