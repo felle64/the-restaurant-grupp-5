@@ -29,7 +29,6 @@ export const AdminView = () => {
       );
       setAccount(accounts[0]);
       setContract(contractInstance);
-      console.log(contractInstance);
     }
   }
 
@@ -39,7 +38,6 @@ export const AdminView = () => {
       .createRestaurant(name)
       .send({ from: account })
       .once("receipt", async (receipt) => {
-        console.log(receipt);
         setContract(contract);
         await checkRestaurantExists();
       });
@@ -51,11 +49,9 @@ export const AdminView = () => {
     if (contract) {
       restaurantCount = await contract.methods.restaurantCount().call();
     }
-    console.log(restaurantCount);
 
     for (let i = 1; i <= restaurantCount; i++) {
       const restaurant = await contract.methods.restaurants(i).call();
-      console.log(restaurant);
       if (restaurant.name === restaurantName) {
         setRestaurantExists(true);
         break;
@@ -77,7 +73,6 @@ export const AdminView = () => {
       bookingsArray.push(booking);
       setBookingIds(bookingIds);
       setBookings(bookingsArray);
-      console.log(bookingsArray);
     }
     setBookings([...bookingsArray]);
   }
@@ -92,20 +87,17 @@ export const AdminView = () => {
   }, [contract]);
 
   async function handleEdit(bookingId) {
-    console.log(bookingId);
     await EditBooking(bookingId, newNumberOfGuest, newName, newDate, newTime);
     fetchBookings();
   }
 
   async function handleRemove(bookingId) {
-    console.log(bookingId);
     await RemoveBookings(bookingId);
     fetchBookings();
   }
 
   function filterBookings(bookings, filterDate, filterTime) {
     if (!filterDate && !filterTime) {
-      console.log(bookings);
       return bookings;
     }
 
@@ -121,7 +113,6 @@ export const AdminView = () => {
   }
 
   const bookingsToShow = filterBookings(bookings, filterDate, filterTime);
-  console.log(bookingsToShow);
 
   return (
     <div className="admin-view">
